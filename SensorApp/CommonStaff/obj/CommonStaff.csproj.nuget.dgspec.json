@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jakub.mrozowski\\Desktop\\SensorApp\\CommonStaff\\CommonStaff.csproj": {}
+    "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\CommonStaff.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jakub.mrozowski\\Desktop\\SensorApp\\CommonStaff\\CommonStaff.csproj": {
+    "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\CommonStaff.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jakub.mrozowski\\Desktop\\SensorApp\\CommonStaff\\CommonStaff.csproj",
+        "projectUniqueName": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\CommonStaff.csproj",
         "projectName": "CommonStaff",
-        "projectPath": "C:\\Users\\jakub.mrozowski\\Desktop\\SensorApp\\CommonStaff\\CommonStaff.csproj",
+        "projectPath": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\CommonStaff.csproj",
         "packagesPath": "C:\\Users\\jakub.mrozowski\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jakub.mrozowski\\Desktop\\SensorApp\\CommonStaff\\obj\\",
+        "outputPath": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
