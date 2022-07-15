@@ -1,0 +1,12 @@
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\bin\Debug\net6.0\CommonStaff.deps.json
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\bin\Debug\net6.0\CommonStaff.dll
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\bin\Debug\net6.0\CommonStaff.pdb
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\obj\Debug\net6.0\CommonStaff.csproj.AssemblyReference.cache
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\obj\Debug\net6.0\CommonStaff.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\obj\Debug\net6.0\CommonStaff.AssemblyInfoInputs.cache
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\obj\Debug\net6.0\CommonStaff.AssemblyInfo.cs
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\obj\Debug\net6.0\CommonStaff.csproj.CoreCompileInputs.cache
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\obj\Debug\net6.0\CommonStaff.dll
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\obj\Debug\net6.0\refint\CommonStaff.dll
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\obj\Debug\net6.0\CommonStaff.pdb
+C:\Users\jakub.mrozowski\Desktop\SensorApp\CommonStaff\obj\Debug\net6.0\ref\CommonStaff.dll
