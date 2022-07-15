@@ -1,2 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using SensorApp.Lists;
+
+string name;
+name = Console.ReadLine();
+string filename = name;
+var listSensor = new ListSensor();
+listSensor.ReadFromFile(filename);
+
