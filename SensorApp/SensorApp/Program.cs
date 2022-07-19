@@ -8,5 +8,5 @@ listSensor.ReadFromFile(filename);
 var com = LinuxCommand.SystemCommand("sudo blescan");
 var listBluetooth = new ListBluetooth();
 listBluetooth.ReadBlue(com);
-//Brak dalszych modyfikacji
+//Brak dalszych modyfikacji.
         
