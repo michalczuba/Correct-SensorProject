@@ -13,7 +13,7 @@ namespace SensorApp.Lists
         public void ReadBlue(string com)
         {
             BluetoothList = new List<BledeviceModel>();
-            BluetoothList = BlePhrase.ReadBlue(com);
+            BluetoothList = BlePhrase.ReadBlue(com);// this line will make list of <mac,dBm,manufacture> from blescan result of devices
         }
     }
 }
