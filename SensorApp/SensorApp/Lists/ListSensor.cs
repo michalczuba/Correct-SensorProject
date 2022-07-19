@@ -8,7 +8,7 @@ using CommonStaff;
 using SensorApp.Servis;
 namespace SensorApp.Lists
 {
-    internal class ListSensor
+    public class ListSensor
     {
         public List<SensorModel> SensorList { private set; get; } = new List<SensorModel>();
         public void ReadFromFile(string name)

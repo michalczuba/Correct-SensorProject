@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using CommonStaff.Moduls;
 namespace SensorApp.Servis
 {
-    internal class BlePhrase
+    public class BlePhrase
     {
-        public static List<BledeviceModel> ReadBlue(string com)
+        public static List<BleDeviceModel> PhraseBlue(string com)
         {
 
-            List<BledeviceModel> ListOfBlue = new List<BledeviceModel>();
+            List<BleDeviceModel> ListOfBlue = new List<BleDeviceModel>();
             //Nowa
             string[] phrase = com.Split(' ', '\t');
             int size = phrase.Length;
@@ -35,7 +35,7 @@ namespace SensorApp.Servis
                 {
                     nb = phrase[i + 1];
                     //Console.WriteLine(nb);
-                    BledeviceModel tmp = new BledeviceModel(mac, id, nb);
+                    BleDeviceModel tmp = new BleDeviceModel(mac, id, nb);
                     ListOfBlue.Add(tmp);
                 }
             }

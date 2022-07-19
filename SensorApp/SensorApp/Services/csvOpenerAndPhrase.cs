@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CommonStaff.Moduls;
 namespace SensorApp.Servis
 {
-    internal class csvOpener
+    public class csvOpenerAndPhrase
     {
         public static List<SensorModel> Open(string fullPath)
         {

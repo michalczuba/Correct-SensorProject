@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CommonStaff.Moduls
 {
-    public class BledeviceModel
+    public class BleDeviceModel
     {
-        public BledeviceModel(string mac,string dBm,string manufacture)
+        public BleDeviceModel(string mac,string dBm,string manufacture)
         {
             Mac = mac;
             DBm = dBm;  

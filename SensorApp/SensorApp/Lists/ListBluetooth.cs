@@ -7,13 +7,13 @@ using CommonStaff.Moduls;
 using SensorApp.Servis;
 namespace SensorApp.Lists
 {
-    internal class ListBluetooth
+    public class ListBluetooth
     {
-        public List<BledeviceModel> BluetoothList { private set; get; } = new List<BledeviceModel>();
+        public List<BleDeviceModel> BluetoothList { private set; get; } = new List<BleDeviceModel>();
         public void ReadBlue(string com)
         {
-            BluetoothList = new List<BledeviceModel>();
-            BluetoothList = BlePhrase.ReadBlue(com);// this line will make list of <mac,dBm,manufacture> from blescan result of devices
+            BluetoothList = new List<BleDeviceModel>();
+            BluetoothList = BlePhrase.PhraseBlue(com);// this line will make list of <mac,dBm,manufacture> from blescan result of devices
         }
     }
 }
