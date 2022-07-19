@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using  CommonStaff.Moduls;
+using CommonStaff;
 using SensorApp.Servis;
 namespace SensorApp.Lists
 {
@@ -13,7 +14,8 @@ namespace SensorApp.Lists
         public void ReadFromFile(string name)
         {
             SensorList = new List<SensorModel>();
-            SensorList = csvOpener.Open(name);
+            string fullPath = FilePath.PathToFile(name);
+            SensorList = csvOpener.Open(fullPath);//this sepccific line open csv file and phrase it in list with have 2 spaces like this <##,##>;
         }
     }
 }
