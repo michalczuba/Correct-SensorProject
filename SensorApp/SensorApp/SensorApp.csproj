@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CommonStaff\CommonStaff.csproj" />
+    <ProjectReference Include="..\CommonStaff\Common.csproj" />
   </ItemGroup>
 
 </Project>

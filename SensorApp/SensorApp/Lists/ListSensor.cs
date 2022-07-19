@@ -15,7 +15,7 @@ namespace SensorApp.Lists
         {
             SensorList = new List<SensorModel>();
             string fullPath = FilePath.PathToFile(name);
-            SensorList = csvOpener.Open(fullPath);//this sepccific line open csv file and phrase it in list with have 2 spaces like this <##,##>;
+            SensorList = csvOpenerAndPhrase.Open(fullPath);//this sepccific line open csv file and phrase it in list with have 2 spaces like this <##,##>;
         }
     }
 }
