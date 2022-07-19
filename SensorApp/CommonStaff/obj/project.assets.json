@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\CommonStaff.csproj",
-      "projectName": "CommonStaff",
-      "projectPath": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\CommonStaff.csproj",
+      "projectUniqueName": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\Common.csproj",
+      "projectName": "Common",
+      "projectPath": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\Common.csproj",
       "packagesPath": "C:\\Users\\jakub.mrozowski\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\obj\\",
       "projectStyle": "PackageReference",
