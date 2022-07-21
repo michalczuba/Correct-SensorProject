@@ -1,5 +1,5 @@
 using SensorApp.Lists;
-using Common.Moduls;
+using Common.Modeles;
 using SensorApp.Servis;
 namespace SensorAppTests
 {

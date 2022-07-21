@@ -3,10 +3,10 @@ using Common;
 string name;
 name = Console.ReadLine();
 string filename = name;
-var listSensor = new ListSensor();
+var listSensor = new DatabaseSensorManager();
 listSensor.ReadFromFile(filename);
 var com = LinuxCommand.SystemCommand("sudo blescan");
-var listBluetooth = new ListBluetooth();
+var listBluetooth = new ScannsedSensorManager();
 listBluetooth.ReadBlue(com);
 //Brak dalszych modyfikacji.
         

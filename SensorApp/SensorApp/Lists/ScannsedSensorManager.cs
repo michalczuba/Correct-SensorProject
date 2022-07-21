@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Moduls;
+using Common.Modeles;
 using SensorApp.Servis;
 namespace SensorApp.Lists
 {
-    public class ListBluetooth
+    public class ScannsedSensorManager
     {
         public List<BleDeviceModel> BluetoothList { private set; get; } = new List<BleDeviceModel>();
         public void ReadBlue(string com)

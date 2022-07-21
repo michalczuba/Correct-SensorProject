@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using  Common.Moduls;
+using  Common.Modeles;
 using Common;
 using SensorApp.Servis;
 namespace SensorApp.Lists
 {
-    public class ListSensor
+    public class DatabaseSensorManager
     {
         public List<SensorModel> SensorList { private set; get; } = new List<SensorModel>();
         public void ReadFromFile(string name)
