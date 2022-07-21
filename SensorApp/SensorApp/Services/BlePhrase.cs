@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommonStaff.Moduls;
+using Common.Moduls;
 namespace SensorApp.Servis
 {
     public class BlePhrase
@@ -12,11 +12,8 @@ namespace SensorApp.Servis
         {
 
             List<BleDeviceModel> ListOfBlue = new List<BleDeviceModel>();
-            //Nowa
             string[] phrase = com.Split(' ', '\t');
             int size = phrase.Length;
-            //Console.WriteLine("|"+phrase[13]+ "|");
-            //Console.WriteLine(phrase[14]);
             string mac = "", id = "", nb = "";
             for (int i = 0; i < size; i++)
             {
@@ -24,17 +21,17 @@ namespace SensorApp.Servis
                 if (phrase[i] == "(new):")
                 {
                     mac = phrase[i + 1];
-                    //Console.WriteLine(mac);
+                    
                 }
                 if (phrase[i] == "dBm")
                 {
                     id = phrase[i - 1];
-                    //Console.WriteLine(id);
+                    
                 }
                 if (phrase[i] == "Manufacturer:")
                 {
                     nb = phrase[i + 1];
-                    //Console.WriteLine(nb);
+                    
                     BleDeviceModel tmp = new BleDeviceModel(mac, id, nb);
                     ListOfBlue.Add(tmp);
                 }

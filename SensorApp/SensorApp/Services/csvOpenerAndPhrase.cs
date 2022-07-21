@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommonStaff.Moduls;
+using Common.Moduls;
 namespace SensorApp.Servis
 {
-    public class csvOpenerAndPhrase
+    public class CsvOpenerAndPhrase
     {
-        public static List<SensorModel> Open(string fullPath)
+        public static List<SensorModel> ReadSensorsFromCsv(string fullPath)
         {
             using (
                 var reader = new StreamReader(fullPath))
@@ -18,15 +18,9 @@ namespace SensorApp.Servis
                 {
                     var line = reader.ReadLine();
                     var splited = line.Split(';');
-                    //Console.WriteLine(splited[0] + "\t" + splited[1]);
                     SensorModel tmp = new SensorModel(splited[0], splited[1]);
                     ListOfMac.Add(tmp);
                 }
-                //foreach (var val in ListOfMac)
-                //{
-                //    Console.WriteLine(val.Mac + "\t" + val.SerialNumber);
-                //}
-                //Console.ReadKey();
                 return ListOfMac;
             }
         }

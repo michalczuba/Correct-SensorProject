@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonStaff.Moduls
+namespace Common.Moduls
 {
     public class SensorModel
     {

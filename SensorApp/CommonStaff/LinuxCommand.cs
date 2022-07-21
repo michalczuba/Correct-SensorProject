@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-namespace CommonStaff
+namespace Common
 {
     public class LinuxCommand
     {

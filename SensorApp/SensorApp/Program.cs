@@ -1,5 +1,5 @@
 ﻿using SensorApp.Lists;
-using CommonStaff;
+using Common;
 string name;
 name = Console.ReadLine();
 string filename = name;

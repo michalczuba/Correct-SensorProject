@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using  CommonStaff.Moduls;
-using CommonStaff;
+using  Common.Moduls;
+using Common;
 using SensorApp.Servis;
 namespace SensorApp.Lists
 {
@@ -15,7 +15,7 @@ namespace SensorApp.Lists
         {
             SensorList = new List<SensorModel>();
             string fullPath = FilePath.PathToFile(name);
-            SensorList = csvOpenerAndPhrase.Open(fullPath);//this sepccific line open csv file and phrase it in list with have 2 spaces like this <##,##>;
+            SensorList = CsvOpenerAndPhrase.ReadSensorsFromCsv(fullPath);//this sepccific line open csv file and phrase it in list with have 2 spaces like this <##,##>;
         }
     }
 }

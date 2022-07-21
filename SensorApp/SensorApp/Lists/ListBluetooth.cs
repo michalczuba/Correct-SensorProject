@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommonStaff.Moduls;
+using Common.Moduls;
 using SensorApp.Servis;
 namespace SensorApp.Lists
 {
