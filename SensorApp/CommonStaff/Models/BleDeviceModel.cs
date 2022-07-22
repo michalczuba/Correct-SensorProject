@@ -8,14 +8,14 @@ namespace Common.Modeles
 {
     public class BleDeviceModel
     {
-        public BleDeviceModel(string mac,string dBm,string manufacture)
+        public BleDeviceModel(string mac, double dBm, List<Byte> manufacture)
         {
             Mac = mac;
-            DBm = dBm;  
-            Manufacture = manufacture;  
+            DBm = dBm;
+            Manufacture = manufacture;
         }
         public string Mac { private set; get; }
-        public string DBm { private set; get; } 
-        public string Manufacture { private set; get; }
+        public double DBm { private set; get; }
+        public List<Byte> Manufacture { private set; get; }
     }
 }

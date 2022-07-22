@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Modeles;
+using Common;
 namespace SensorApp.Servis
 {
     public class BlePhrase
@@ -14,7 +15,9 @@ namespace SensorApp.Servis
             List<BleDeviceModel> ListOfBlue = new List<BleDeviceModel>();
             string[] phrase = com.Split(' ', '\t');
             int size = phrase.Length;
-            string mac = "", id = "", nb = "";
+            string mac = "";
+            double dbm = 0;
+            List<Byte> ByteList;
             for (int i = 0; i < size; i++)
             {
 
@@ -25,14 +28,17 @@ namespace SensorApp.Servis
                 }
                 if (phrase[i] == "dBm")
                 {
-                    id = phrase[i - 1];
+                    dbm = Double.Parse( phrase[i - 1]);
                     
                 }
                 if (phrase[i] == "Manufacturer:")
                 {
-                    nb = phrase[i + 1];
+                    string input = phrase[i + 1];
+                    int input_size = input.Length;
+                    input = input.Substring(1, input_size-2);
+                    ByteList = HexStringToByteList.HexToByteList(input);
                     
-                    BleDeviceModel tmp = new BleDeviceModel(mac, id, nb);
+                    BleDeviceModel tmp = new BleDeviceModel(mac, dbm, ByteList);
                     ListOfBlue.Add(tmp);
                 }
             }
