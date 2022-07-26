@@ -18,7 +18,7 @@ namespace SensorAppTests
                 .ToList();
             foreach(var val in tmpE)
             {
-                expected += val.ToString();
+                expected += val.ToString()+",";
             }
             //Act
             List<BleDeviceModel> list = new List<BleDeviceModel>();
@@ -26,7 +26,7 @@ namespace SensorAppTests
             string tmpA = "";
             foreach(var val in list[0].Manufacture)
             {
-                tmpA +=val.ToString();
+                tmpA +=val.ToString()+",";
             }
             string actual = list[0].Mac + " " + list[0].DBm + " " +tmpA;
             
