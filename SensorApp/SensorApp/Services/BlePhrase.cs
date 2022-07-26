@@ -4,11 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Modeles;
-using Common;
 namespace SensorApp.Servis
 {
     public class BlePhrase
     {
+        public static List<byte> StringToByteList(string hex)
+        {
+            return Enumerable.Range(0,hex.Length)
+                .Where(x => x%2 ==0)
+                .Select(x => Convert.ToByte(hex.Substring(x,2),16))
+                .ToList();
+        }
         public static List<BleDeviceModel> PhraseBlue(string com)
         {
 
@@ -16,8 +22,8 @@ namespace SensorApp.Servis
             string[] phrase = com.Split(' ', '\t');
             int size = phrase.Length;
             string mac = "";
-            double dbm = 0;
-            List<Byte> ByteList;
+            double DBM=0;
+            List<byte> BL;
             for (int i = 0; i < size; i++)
             {
 
@@ -28,17 +34,16 @@ namespace SensorApp.Servis
                 }
                 if (phrase[i] == "dBm")
                 {
-                    dbm = Double.Parse( phrase[i - 1]);
+                    DBM =Convert.ToDouble(phrase[i - 1]);
                     
                 }
                 if (phrase[i] == "Manufacturer:")
                 {
-                    string input = phrase[i + 1];
+                    string input =phrase[i + 1];
                     int input_size = input.Length;
                     input = input.Substring(1, input_size-2);
-                    ByteList = HexStringToByteList.HexToByteList(input);
-                    
-                    BleDeviceModel tmp = new BleDeviceModel(mac, dbm, ByteList);
+                    BL = StringToByteList(input);
+                    BleDeviceModel tmp = new BleDeviceModel(mac,DBM, BL);
                     ListOfBlue.Add(tmp);
                 }
             }
