@@ -8,13 +8,22 @@ namespace SensorApp.Servis
 {
     public class BlePhrase
     {
+        public static List<byte> StringToByteList(string hex)
+        {
+            return Enumerable.Range(0,hex.Length)
+                .Where(x => x%2 ==0)
+                .Select(x => Convert.ToByte(hex.Substring(x,2),16))
+                .ToList();
+        }
         public static List<BleDeviceModel> PhraseBlue(string com)
         {
 
             List<BleDeviceModel> ListOfBlue = new List<BleDeviceModel>();
             string[] phrase = com.Split(' ', '\t');
             int size = phrase.Length;
-            string mac = "", id = "", nb = "";
+            string mac = "";
+            double DBM=0;
+            List<byte> BL;
             for (int i = 0; i < size; i++)
             {
 
@@ -25,14 +34,16 @@ namespace SensorApp.Servis
                 }
                 if (phrase[i] == "dBm")
                 {
-                    id = phrase[i - 1];
+                    DBM =Convert.ToDouble(phrase[i - 1]);
                     
                 }
                 if (phrase[i] == "Manufacturer:")
                 {
-                    nb = phrase[i + 1];
-                    
-                    BleDeviceModel tmp = new BleDeviceModel(mac, id, nb);
+                    string input =phrase[i + 1];
+                    int input_size = input.Length;
+                    input = input.Substring(1, input_size-2);
+                    BL = StringToByteList(input);
+                    BleDeviceModel tmp = new BleDeviceModel(mac,DBM, BL);
                     ListOfBlue.Add(tmp);
                 }
             }
