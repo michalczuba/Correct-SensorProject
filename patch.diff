@@ -1,0 +1,233 @@
+From e85174a0f0217d8dc0451d9f4a4ddc28c25a8715 Mon Sep 17 00:00:00 2001
+From: "SKK\\jakub.mrozowski" <jakub.mrozowski@skkglobal.com>
+Date: Tue, 26 Jul 2022 13:38:29 +0200
+Subject: [PATCH] Addint BlueToothCout
+
+---
+ .../ProjectEvaluation/sensorapp.metadata.v2   | Bin 169675 -> 170026 bytes
+ .../ProjectEvaluation/sensorapp.projects.v2   | Bin 2370535 -> 2554178 bytes
+ .../SensorApp/DesignTimeBuild/.dtbcache.v2    | Bin 112668 -> 112668 bytes
+ SensorApp/.vs/SensorApp/v17/.futdcache.v1     | Bin 781 -> 1183 bytes
+ SensorApp/.vs/SensorApp/v17/.suo              | Bin 89600 -> 75264 bytes
+ SensorApp/SensorApp/Services/BlueToothCout.cs |  26 ++++++++++++++++++
+ .../SensorApp.csproj.AssemblyReference.cache  | Bin 92358 -> 91982 bytes
+ ...sorAppTests.csproj.AssemblyReference.cache | Bin 104548 -> 103747 bytes
+ 8 files changed, 26 insertions(+)
+ create mode 100644 SensorApp/SensorApp/Services/BlueToothCout.cs
+
+diff --git a/SensorApp/.vs/ProjectEvaluation/sensorapp.metadata.v2 b/SensorApp/.vs/ProjectEvaluation/sensorapp.metadata.v2
+index c5c6495c083abac3c1798452e0e4587a44c26284..516b6261c3f3a1a4b9b3935fc34fe4e997650a93 100644
+GIT binary patch
+delta 177
+zcmX@TmTT1pu7(!IEli;uLeI5T7(gHpi2qJF$NM{Px?MAq785tabVY3@`{@OeOf1vq
+z8!;&``b=k3W3ri^ugN697>HoA>6I3z7R7-C96$;sr~l_-Vx3;x$JD-Erjv=6Md*W+
+vD%c7?Aekn12xi6ff-WYO?U}ty8<~V|v8sWUL;=Zj3}0YMwuen%DrExzR~IpP
+
+delta 119
+zcmZ3rf$Q{Iu7(!IEli;uLicQx89;y^h<T?S-0>}Mx?MAq7ArfDZ#$h)jmc=bd@obT
+z_UbMsUKSzN0tKKr1A{aWAMsN(eFss!{YW3vRwkkMQHo$$5cw(XAY69qM5a<U0K7IK
+Al>h($
+
+diff --git a/SensorApp/.vs/ProjectEvaluation/sensorapp.projects.v2 b/SensorApp/.vs/ProjectEvaluation/sensorapp.projects.v2
+index 05eb29c563835277366cbb9b9813cfbfca8552f3..e912a8949b05a5503661701da575c5a5f5797471 100644
+GIT binary patch
+delta 147
+zcmaEUeFEd5PqP^tS{PfHT9{i{T3B1yTG(4SS~y#{TDV(yT6kOdTKHQ8S_E5!T7+9f
+zT0~pKTEtr<S|nSfTBKWKT4Y<~TI5?4S`=H9T9mh_JlCH7AzC<cySc6MhIbHVe4$VT
+r^Y(5B<y_Y79~KB?+HCLHsvxowD#Dj4?8>`+U8)G9!S>*ViY#jZ4$U<p
+
+delta 83
+zcmV~$xfOy?006M}1r@vn1TXOHT+$)~*t-T3xCA56I|0e>{|$Zj32(tjBsMlNl}OFZ
+fEiA39ZER(7g`HAm@8Ia<tk$@=y19F_&;B(4vt}EN
+
+diff --git a/SensorApp/.vs/SensorApp/DesignTimeBuild/.dtbcache.v2 b/SensorApp/.vs/SensorApp/DesignTimeBuild/.dtbcache.v2
+index 4c04e7e3356a4b8b51e2a0f659a0e2c82d10934a..719a56e24a4c55f18360ace872f200fc0770b3c8 100644
+GIT binary patch
+delta 615
+zcmZvY%W70X5QgWRxv23LM@<%Pe1mlLt-5w2LY5K)*V>nAiG)!m*$5#sFfU+mkxg*n
+zGYCGG{Rq|}hzo7#rs%KhumA7sHoI=Kz5S7_-Pe4=@s!VBEI&VgdGzM|a&oZl`T<Q3
+z<H;#^lcAm;tv-I>e0F%ee9x;-tK;QaHygkLf{m(JA`8Ao8?~b92+5I&I(x&G(8rop
+zh~5YaP`Ok_Fg5`?HCk{%McJ}(plS-H93;nF4F%_oGp-a>DOT^n5ioN?;_PIC)jI2#
+z=<>_{y4xAt^yo%?fYHL~0=XFU0kcPzVNiorV4}xtL?|YOV%5h`L_e`90lc@s7CF}<
+zN<o}yZOO8(7;ViV2M1DHkjvm9xgtJTtLW3aC~=B%0Rcf7QVB9=ks%2fq>Fr}iXe$K
+zCr|P%#U&NB{6tDVmY}id<e~?{RI4*qX-A?WPbCsw{R-WytM77r9rth7QwjTINGxkE
+zyN$MO+@|eTyWQ@#dz;PXsoZvdXt!;Bo3vTG({|c@p+oP#^nuWaLihelcZEK>q0i*O
+W-@!N1bHR@VZ!g9_FUH-sAHM;+J*E2q
+
+delta 539
+zcmY+B&2G~`5XZ+(8xp=r1r<^c95_<E>(33RN~zLoL@FV1Tknot6K6NFU8-_u41Iyp
+z9(t(|4}nyPXW=3Czyq*UL82qgVdnSO=sz=8rh8?&YmWio>oac&>tkNl2!lzbKcHyF
+zh03v7RE26_hem-P6Ct?o6PW~oAElBo$%dRTk)#m@Gzk5~k28{yBta6<kkO$GWlUHY
+zF?c%S;sB?|N*q*L6`!ygX^G&{2zF%5Vtmi-%vefHIrDv%*)oe$Mgz%_XE76W7-lpT
+zA+@bEM#5v7aS;egB5?f#o{w}{THn*dJjc30`A%1}Qgc~fUJsnTjg382Sn&q!etE^`
+z<D$I$&Ya&DzuexkV~_B_=HD3DG;nGh<C>0HGwY_?w(Y|k2C#XH-m$dz+4RrhtZg5y
+zBwM#6cdg{!7jysIIa}#;qp<Nr?M;uZ&-v?py!biUTEgaPg9#Tip5v}QQaAqL<y)+E
+z`4RsCT%eMuM1l1#)<v%Ni#fuRk)AJ#68~%UJ*9<KS&>7}J5)8#a2xub{e+mI+=dsH
+WAMr}Pp$T#6tJ9Ot^-0J1_TvwkTC0Zu
+
+diff --git a/SensorApp/.vs/SensorApp/v17/.futdcache.v1 b/SensorApp/.vs/SensorApp/v17/.futdcache.v1
+index 93b92d5ada077259b97391b411e2e2376cab1153..f41d29f9b693682cc997693e75575257deada823 100644
+GIT binary patch
+delta 169
+zcmeBWo6pI}xsmZJBWISTc)Q!VgM7ay|7WabogYvHWYsgZvFZG1<^P>Gxt=jml|3jm
+zCpED+l_MZ0u_P_OD3{GKuhKan6r_~_3cM%QD^8YURG#e4B#Bdl>Lr0iFb!c44T6*R
+VF>+4c$E3>vvt{x}CJ_#pDgbU?G7kU%
+
+delta 43
+zcmbQw*~`Yrwvq8GBPZhlWu@8&PUi0>|7WabO)9A}dpEhBsf{Bw!rtOt-YpIQP5BU6
+
+diff --git a/SensorApp/.vs/SensorApp/v17/.suo b/SensorApp/.vs/SensorApp/v17/.suo
+index 2d20762a8cfca8d14af8754a093bedf3cfe2d000..5eba520b87c7884a3c4111a492ed37dc83000435 100644
+GIT binary patch
+delta 3971
+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
+
+delta 4057
+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
+M@Sncc|M&OxpK9}{=l}o!
+
+diff --git a/SensorApp/SensorApp/Services/BlueToothCout.cs b/SensorApp/SensorApp/Services/BlueToothCout.cs
+new file mode 100644
+index 0000000..d92eaa4
+--- /dev/null
++++ b/SensorApp/SensorApp/Services/BlueToothCout.cs
+@@ -0,0 +1,26 @@
++﻿using System;
++using System.Collections.Generic;
++using System.Linq;
++using System.Text;
++using System.Threading.Tasks;
++using Common.Modeles;
++namespace SensorApp.Services
++{
++    public class BlueToothCout
++    {
++        public static void CoutBlueToothList(List<BleDeviceModel> ListBlueTooth)
++        {
++            foreach(var val in ListBlueTooth)
++            {
++                string output = val.Mac+" "+val.DBm.ToString()+" ";
++                foreach(var value in val.Manufacture)
++                {
++                    output += value.ToString()+",";
++                }
++                int output_size =output.Length;
++                output =output.Substring(0,output_size-1);
++                Console.WriteLine(output);
++            }
++        }
++    }
++}
+diff --git a/SensorApp/SensorApp/obj/Debug/net6.0/SensorApp.csproj.AssemblyReference.cache b/SensorApp/SensorApp/obj/Debug/net6.0/SensorApp.csproj.AssemblyReference.cache
+index a41d22449d1f0eefcc2ae648078b43115232db94..9fa6971c7e45850301fed831f299d1d3dc878cd8 100644
+GIT binary patch
+delta 27
+jcmX?hk@eg;)`l&N(P^wkLGir5rzfN_-k<&^m60C+s80)7
+
+delta 290
+zcmX?ij`i3@)`l&N(P^x?Qzh7bO;1Q;ywA$W!oa{V+5EGzA&>?G#(Ee7!sP%`8|>rj
+z1+Q{hfkYU=1S6x=WI;3G$qVe+CyUq%>VgD8fGFLQizU@b)Zwk891pR9NIM|T<SH}K
+iGte_OFgCPgWaQTKa}9CMFG_VRC}3oRn)V+G7#RT3sxD^$
+
+diff --git a/SensorApp/SensorAppTests/obj/Debug/net6.0/SensorAppTests.csproj.AssemblyReference.cache b/SensorApp/SensorAppTests/obj/Debug/net6.0/SensorAppTests.csproj.AssemblyReference.cache
+index d8704715fe1df8d710e00bc73e1e2822f5cf3862..00bef54087a8807bdfbe37b4eb27557552ec7454 100644
+GIT binary patch
+delta 78
+zcmaE|f$i`rwuUW?4ii{U)n)Vko}N3M(R_N%1jhB#zfEHlV2qspu%FRry7**99af{D
+Yc%TB0$&B|Qa?x-(f$g8BG8Qob01H+hKmY&$
+
+delta 636
+zcmX@SitWh;wuUW?4ii|v?sr}FX}Zr8M)T=46ByUCGO{u-FibZ8tgH*9!GN(I#(;1+
+zfYb*2_<F&sTvi|vMi4Q%SW=xd9n-&0Vw6_|8-Qj3NDKrZ27Bv}>Xbjt3W*RCfM%eX
+zjn(mBix|1eO!N%&j17zpEg2cP_555zob!uP9SaH=*`TKVhXO_h#>nXp`x%X<=S^hP
+zVV!(R02qYxCo<k=Wn=*=1%;j=X%1jyl$tDPCOmn8J^N%4dqL7dlJu~j3=CA72T?RU
+Shy<pqO=0BU{$LVgG7|t*`)V@)
+
+-- 
+2.37.1.windows.1
+
