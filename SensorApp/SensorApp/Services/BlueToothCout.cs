@@ -12,7 +12,16 @@ namespace SensorApp.Services
         {
             foreach(var val in ListBlueTooth)
             {
-                string output = val.Mac+" "+val.DBm.ToString()+" ";
+                string output = val.Mac+" ";
+                int size = 0;
+                int dbm = 0;
+                foreach(var value in val.DBm)
+                {
+                    size++;
+                    dbm += value;
+                }
+                dbm /= size;
+                output += dbm.ToString() + " "; 
                 foreach(var value in val.Manufacture)
                 {
                     output += value.ToString()+",";
