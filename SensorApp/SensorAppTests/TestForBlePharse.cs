@@ -10,7 +10,7 @@ namespace SensorAppTests
         public void BlePhrase_SchouldWork(string input, string expected,string AdvForTest)
         {
             //Arnage
-            
+            IBlePhrase blePhrase = new BlePhrase();  
             List<byte> tmpE = Enumerable.Range(0, AdvForTest.Length)
                 .Where(x => x % 2 == 0)
                 .Select(x => Convert.ToByte(AdvForTest.Substring(x, 2), 16))
@@ -21,13 +21,13 @@ namespace SensorAppTests
             }
             //Act
             List<BleDeviceModel> list = new List<BleDeviceModel>();
-            list = BlePhrase.PhraseBlue(input);
+            list = blePhrase.PhraseBlue(input);
             string tmpA = "";
             foreach(var val in list[0].Manufacture)
             {
                 tmpA +=val.ToString()+",";
             }
-            string actual = list[0].Mac + " " + list[0].DBm + " " +tmpA;
+            string actual = list[0].Mac + " " + list[0].DBm[0] + " " +tmpA;
             
             //Asset
             Assert.Equal(expected,actual);
