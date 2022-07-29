@@ -10,7 +10,7 @@ namespace SensorApp.Lists
 {
     public class DatabaseSensorManager
     {
-        public List<SensorModel> SensorList { private set; get; } = new List<SensorModel>();
+        public List<SensorModel> SensorList { private set; get; }
         public void ReadFromFile(string name)
         {
             SensorList = new List<SensorModel>();

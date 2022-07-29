@@ -13,6 +13,6 @@ var listBluetooth = new ScannsedSensorManager(new BlePhrase());
 Console.WriteLine("Making list inicialize");
 listBluetooth.ReadBlue(com);
 Console.WriteLine("Reading list inicialize");
-BlueToothCout.CoutBlueToothList(listBluetooth.BluetoothList);
+SensorModelHelper.DisplaySensorList(listBluetooth.BluetoothList);
 //Brak dalszych modyfikacji.
         
