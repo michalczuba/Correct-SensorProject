@@ -8,7 +8,7 @@ namespace Common.Modeles
 {
     public class BleDeviceModel
     {
-        public BleDeviceModel(string mac,int dBm,List<byte> manufacture)
+        public BleDeviceModel(string mac,int dBm,IEnumerable<byte> manufacture)
         {
             DBm = new List<int>();
             Mac = mac;
@@ -21,6 +21,6 @@ namespace Common.Modeles
         }
         public string Mac { private set; get; }
         public List<int> DBm { private set; get; } 
-        public List<byte> Manufacture  { private set; get; }
+        public IEnumerable<byte> Manufacture  { private set; get; }
     }
 }
