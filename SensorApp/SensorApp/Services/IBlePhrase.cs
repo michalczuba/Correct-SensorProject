@@ -4,7 +4,7 @@ namespace SensorApp.Servis
 {
     public interface IBlePhrase
     {
-        List<BleDeviceModel> PhraseBlue(string com);
-        List<byte> StringToByteList(string hex);
+        IEnumerable<BleDeviceModel> PhraseBlue(string com);
+        IEnumerable<byte> StringToByteList(string hex);
     }
 }

@@ -11,7 +11,7 @@ namespace SensorApp.Lists
     {
         private IBlePhrase _blePharse;
 
-        public List<BleDeviceModel> BluetoothList { private set; get; } = new List<BleDeviceModel>();
+        public IEnumerable<BleDeviceModel> BluetoothList { private set; get; } = new List<BleDeviceModel>();
         public ScannsedSensorManager(IBlePhrase phrase)
         {
             _blePharse = phrase;
