@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "SU0mU9ZmfjrcJymcbWzb26xSUJN3xy+CyPLXeiDY0F56u/XGXs1sv5CSgrt0djsUXZYeMb2xMAUK3Z0vKYRYJg==",
+  "dgSpecHash": "AGDZrG8bDGJL5eZC/2zP480JpRSHDpSnItPCSOH969glZzor78aAHMkHQkVqYsMO8y6njuSRuA68yh3jGWvo6Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\SensorAppTests\\SensorAppTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jakub.mrozowski\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
+    "C:\\Users\\jakub.mrozowski\\.nuget\\packages\\csvhelper\\28.0.1\\csvhelper.28.0.1.nupkg.sha512",
     "C:\\Users\\jakub.mrozowski\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
     "C:\\Users\\jakub.mrozowski\\.nuget\\packages\\microsoft.net.test.sdk\\17.1.0\\microsoft.net.test.sdk.17.1.0.nupkg.sha512",
     "C:\\Users\\jakub.mrozowski\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

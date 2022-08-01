@@ -15,7 +15,7 @@ namespace SensorApp.Servis
                 .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
                 .ToList();
         }
-        public IEnumerable<BleDeviceModel> PhraseBlue(string com,int scanstodo)
+        public IEnumerable<BleDeviceModel> PhraseBlue(string com)
         {
 
             List<BleDeviceModel> ListOfBlue = new List<BleDeviceModel>();
@@ -25,7 +25,7 @@ namespace SensorApp.Servis
             int DBM = 0;
             IEnumerable<byte> BL;
             bool y = true;
-            for (int s=0,i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
 
                 if (phrase[i] == "(update):")
@@ -48,16 +48,16 @@ namespace SensorApp.Servis
                 {
                     if (y)
                     {
-                        if (s < scanstodo)
-                        {
+                        
+                        
                             string input = phrase[i + 1].ToString();
                             int input_size = input.Length;
                             input = input.Substring(1, input_size - 2);
                             BL = StringToByteList(input);
                             BleDeviceModel tmp = new BleDeviceModel(mac, DBM, BL);
                             ListOfBlue.Add(tmp);
-                            s++;
-                        }
+                            
+                        
                     }
                     else
                     {

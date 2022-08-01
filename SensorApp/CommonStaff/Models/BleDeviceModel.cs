@@ -13,14 +13,18 @@ namespace Common.Modeles
             DBm = new List<int>();
             Mac = mac;
             DBm.Add(dBm);  
-            Manufacture = manufacture;  
+            Manufacture = manufacture;
+            Mediana = dBm;
         }
         public void AddToRSSI(int dBm)
         {
             DBm.Add(dBm);
+            DBm.Sort();
+            Mediana = DBm[DBm.Count/2];
         }
         public string Mac { private set; get; }
         public List<int> DBm { private set; get; } 
         public IEnumerable<byte> Manufacture  { private set; get; }
+        public int Mediana { private set; get; }
     }
 }

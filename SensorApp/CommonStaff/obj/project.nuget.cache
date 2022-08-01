@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9KQZVJAXTjdNe9OtK+qg+dbvsu7SOXDU76lEikIK+f4Cu+kFCyrdg2h6xJn2UixqF2vatHoDK7WXbmlOeSHKhA==",
+  "dgSpecHash": "84A0B0w+Pro7O2syOp5fgLpuUpgxFksBLqvz/pvygwuHvppVTWVkbaUYYLcvwonBUcleoXRMrGSrN3ohWm59zQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\CommonStaff\\Common.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jakub.mrozowski\\.nuget\\packages\\csvhelper\\28.0.1\\csvhelper.28.0.1.nupkg.sha512",
     "C:\\Users\\jakub.mrozowski\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
