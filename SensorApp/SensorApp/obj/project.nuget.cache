@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "xWcYXgyN/j2tsDKzHMi/AQS/LysyaLPYydiR/cOJib8Zkv4Jat2fafXKNSx8l7aoXqNwPLP9gtBeTSkq2/EzzQ==",
+  "dgSpecHash": "hT0V7A7aoHY2Qse/RvBYF7Cf55navpU4RtWs4M+1vxp3IzTN3DXd2bT18+UxESmZLINkUYBvsrcjLnYbPhHq0g==",
   "success": true,
   "projectFilePath": "C:\\Users\\jakub.mrozowski\\Desktop\\My App\\SensorApp\\SensorApp\\SensorApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\jakub.mrozowski\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -16,3 +16,4 @@ C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\obj\Debug\net6.0\ref
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\obj\Debug\net6.0\SensorApp.pdb
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\obj\Debug\net6.0\SensorApp.genruntimeconfig.cache
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\obj\Debug\net6.0\ref\SensorApp.dll
+C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\bin\Debug\net6.0\Newtonsoft.Json.dll

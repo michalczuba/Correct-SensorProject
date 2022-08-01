@@ -50,7 +50,7 @@ namespace SensorApp.Servis
                     {
                         string input = phrase[i + 1].ToString();
                         int input_size = input.Length;
-                        input = input.Substring(1, input_size - 3);
+                        input = input.Substring(1, input_size - 2);
                         BL = StringToByteList(input);
                         BleDeviceModel tmp = new BleDeviceModel(mac, DBM, BL);
                         ListOfBlue.Add(tmp);
