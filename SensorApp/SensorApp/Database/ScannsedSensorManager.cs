@@ -17,10 +17,10 @@ namespace SensorApp.Lists
             _blePharse = phrase;
         }
        
-        public void ReadBlue(string com)
+        public void ReadBlue(string com, int scanstodo)
         {
             BluetoothList = new List<BleDeviceModel>();
-            BluetoothList = _blePharse.PhraseBlue(com);// this line will make list of <mac,dBm,manufacture> from blescan result of devices
+            BluetoothList = _blePharse.PhraseBlue(com,scanstodo);// this line will make list of <mac,dBm,manufacture> from blescan result of devices
         }
     }
 }

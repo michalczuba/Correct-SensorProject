@@ -13,14 +13,14 @@ using Newtonsoft.Json;
 //listSensor.ReadFromFile(filename);
 string filepath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\HciSettings.json";
 string HciSerialized = File.ReadAllText(@"HciConfig.json");
-HCI HCI = JsonConvert.DeserializeObject<HCI>(HciSerialized);
+BlescanParameters HCI = JsonConvert.DeserializeObject<BlescanParameters>(HciSerialized);
 Console.WriteLine("Sudo command inicialize");
 string command = $"sudo blescan -i {HCI.hci}";
 Console.WriteLine(command);
 var com = LinuxCommand.SystemCommand(command);
 var listBluetooth = new ScannsedSensorManager(new BlePhrase());
 Console.WriteLine("Making list inicialize");
-listBluetooth.ReadBlue(com);
+listBluetooth.ReadBlue(com,HCI.NumberOfScnasToDo);
 Console.WriteLine("Reading list inicialize");
 SensorModelHelper.DisplaySensorList(listBluetooth.BluetoothList);
 //Brak dalszych modyfikacji.
