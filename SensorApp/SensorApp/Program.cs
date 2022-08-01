@@ -15,14 +15,24 @@ using Common.ListModelsToModelCsv;
 string filepath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\HciSettings.json";
 string HciSerialized = File.ReadAllText(@"HciConfig.json");
 BlescanParameters HCI = JsonConvert.DeserializeObject<BlescanParameters>(HciSerialized);
-Console.WriteLine("Sudo command inicialize");
-string command = $"sudo blescan -i {HCI.hci}";
-Console.WriteLine(command);
-var com = LinuxCommand.SystemCommand(command);
-var listBluetooth = new ScannsedSensorManager(new BlePhrase());
-Console.WriteLine("Making list inicialize");
-listBluetooth.ReadBlue(com);
-Console.WriteLine("Reading list inicialize");
-SensorModelHelper.DisplaySensorList(listBluetooth.BluetoothList);
-ListOfBleDeviceModelToCsv.ListOfBleDeviceModelToCsvFile(listBluetooth.BluetoothList);
+Console.WriteLine("Start");
+
+for(int i=0; i < HCI.NumberOfScansToDo; i++)
+{
+    Console.WriteLine($"Sudo command inicialize for {i} time!");
+    string command = $"sudo blescan -i {HCI.hci}";
+    Console.WriteLine(command);
+    var com = LinuxCommand.SystemCommand(command);
+    var listBluetooth = new ScannsedSensorManager(new BlePhrase());
+    Console.WriteLine("Making list inicialize");
+    listBluetooth.ReadBlue(com);
+    Console.WriteLine("Reading list inicialize");
+    GlobalList.ToAdd(listBluetooth.BluetoothList);
+    Console.WriteLine("Global list Count: " + GlobalList.R().Count);
+}
+
+
+SensorModelHelper.DisplaySensorList(GlobalList.R());
+ListOfBleDeviceModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R());
+Console.WriteLine("Finish "+GlobalList.R().Count);
 //Brak dalszych modyfikacji.

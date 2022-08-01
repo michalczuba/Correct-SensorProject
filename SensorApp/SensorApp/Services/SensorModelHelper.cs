@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +28,7 @@ namespace SensorApp.Services
                 }
                 int output_size = output.Length;
                 output = output.Substring(0, output_size - 1);
+                output += " "+val.DBm.Count();
                 Console.WriteLine(output);
             }
         }
