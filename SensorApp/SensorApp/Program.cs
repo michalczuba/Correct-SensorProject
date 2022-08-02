@@ -6,11 +6,11 @@ using SensorApp;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using Common.ListModelsToModelCsv;
-//string name;
-//name = Console.ReadLine();
-//string filename = name;
-//var listSensor = new DatabaseSensorManager();
-//listSensor.ReadFromFile(filename);
+string name;
+name = Console.ReadLine();
+string filename = name;
+var listSensor = new DatabaseSensorManager();
+listSensor.ReadFromFile(filename);
 
 string filepath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\HciSettings.json";
 string HciSerialized = File.ReadAllText(@"HciConfig.json");
@@ -27,7 +27,7 @@ for (int i = 0; i < HCI.NumberOfScansToDo; i++)
     Console.WriteLine("Making list inicialize");
     listBluetooth.ReadBlue(com);
     Console.WriteLine("Reading list inicialize");
-    GlobalList.ToAdd(listBluetooth.BluetoothList);
+    GlobalList.ToAdd(listBluetooth.BluetoothList,listSensor.SensorList);
     Console.WriteLine("Global list Count: " + GlobalList.R().Count);
 }
 //SensorModelHelper.DisplaySensorList(GlobalList.R());
