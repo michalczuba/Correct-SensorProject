@@ -23,7 +23,7 @@ namespace SensorAppTests
             }
             //Act
             IEnumerable<BleDeviceModel> list = new List<BleDeviceModel>();
-            list = blePhrase.PhraseBlue(input,1);
+            list = blePhrase.PhraseBlue(input);
             string tmpA = "";
             foreach (var val in list.ElementAt(0).Manufacture)
             {
@@ -43,7 +43,7 @@ namespace SensorAppTests
             IBlePhrase blePhrase = new BlePhrase();
             //Act
             IEnumerable<BleDeviceModel> list = new List<BleDeviceModel>();
-            list = blePhrase.PhraseBlue(input,0);
+            list = blePhrase.PhraseBlue(input);
             int actual = list.Count();
             //Asset
             Assert.Equal(expected, actual);
@@ -104,7 +104,7 @@ namespace SensorAppTests
             IBlePhrase blePhrase = new BlePhrase();
             //Act
             IEnumerable<BleDeviceModel> list = new List<BleDeviceModel>();
-            list = blePhrase.PhraseBlue(input,7);
+            list = blePhrase.PhraseBlue(input);
             int actual = list.Count();
             //Asset
             Assert.Equal(expected, actual);
@@ -130,7 +130,7 @@ namespace SensorAppTests
             IBlePhrase blePhrase = new BlePhrase();
             //Act
             IEnumerable<BleDeviceModel> list = new List<BleDeviceModel>();
-            list = blePhrase.PhraseBlue(input,7);
+            list = blePhrase.PhraseBlue(input);
             IEnumerable<int> actual_value = list.ElementAt(0).DBm;
             int actual = actual_value.Count();
             //Asset

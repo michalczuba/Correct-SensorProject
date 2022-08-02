@@ -13,6 +13,7 @@ namespace Common.ListModelsToModelCsv
     {
         public class PartialBleDiviceModel
         {
+            
             public string mac { get; set; }
             public int rssi { get; set; }
             //public int man { get; set; } 

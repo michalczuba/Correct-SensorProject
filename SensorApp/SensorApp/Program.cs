@@ -17,7 +17,7 @@ string HciSerialized = File.ReadAllText(@"HciConfig.json");
 BlescanParameters HCI = JsonConvert.DeserializeObject<BlescanParameters>(HciSerialized);
 Console.WriteLine("Start");
 
-for(int i=0; i < HCI.NumberOfScansToDo; i++)
+for (int i = 0; i < HCI.NumberOfScansToDo; i++)
 {
     Console.WriteLine($"Sudo command inicialize for {i} time!");
     string command = $"sudo blescan -i {HCI.hci}";
@@ -30,9 +30,11 @@ for(int i=0; i < HCI.NumberOfScansToDo; i++)
     GlobalList.ToAdd(listBluetooth.BluetoothList);
     Console.WriteLine("Global list Count: " + GlobalList.R().Count);
 }
-
-
-SensorModelHelper.DisplaySensorList(GlobalList.R());
+//SensorModelHelper.DisplaySensorList(GlobalList.R());
 ListOfBleDeviceModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R());
-Console.WriteLine("Finish "+GlobalList.R().Count);
+Console.WriteLine("Finish " + GlobalList.R().Count);
+int MedianRssi = CheckingRssiMedian.ChceckMedianRssi();
+double StandardOffset = 1 + double.Parse(HCI.StandardOffset.Substring(0, HCI.StandardOffset.Length - 1)) / 100;
+SensorModelHelper.DisplayRssiWithWrongOffset(MedianRssi * StandardOffset);
+Console.WriteLine(MedianRssi+" * "+StandardOffset+" = "+MedianRssi * StandardOffset);
 //Brak dalszych modyfikacji.

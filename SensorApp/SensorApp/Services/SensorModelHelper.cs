@@ -29,7 +29,8 @@ namespace SensorApp.Services
                 int output_size = output.Length;
                 output = output.Substring(0, output_size - 1);
                 output += " "+val.DBm.Count();
-                Console.WriteLine(output);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Warning: "+output);
             }
         }
         public static void DisplayRssiMedian(BleDeviceModel model)
@@ -49,6 +50,11 @@ namespace SensorApp.Services
                 avrage += val;
             }
             Console.WriteLine(avrage / value_size);
+        }
+        public static void DisplayRssiWithWrongOffset(double Rw)
+        {
+            IEnumerable<BleDeviceModel> list = GlobalList.R().Where(x => x.Mediana < Rw).ToList();
+            DisplaySensorList(list);
         }
     }
 }
