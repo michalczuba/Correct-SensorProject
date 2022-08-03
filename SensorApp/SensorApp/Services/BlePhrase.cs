@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Common.Modeles;
 namespace SensorApp.Servis
 {
     public class BlePhrase : IBlePhrase
     {
+        public string GetStringBettwenTexts(string input,string start,string end)
+        {
+            string result;
+            int posision1 = input.IndexOf(start) + start.Length;
+            int posision2 = input.IndexOf(end);
+            result = input.Substring(posision1, posision2-posision1-1);
+            return result;
+        }
         public IEnumerable<byte> StringToByteList(string hex)
         {
             return Enumerable.Range(0, hex.Length)
@@ -30,12 +39,14 @@ namespace SensorApp.Servis
 
                 if (phrase[i] == "(update):")
                 {
-                    mac = phrase[i + 1];
+                    string tmp = phrase[i + 1];
+                    mac = GetStringBettwenTexts(tmp,"[37m","\u001B[0m");
                     y = false;
                 }
                 if (phrase[i] == "(new):")
                 {
-                    mac = phrase[i + 1];
+                    string tmp = phrase[i + 1];
+                    mac = GetStringBettwenTexts(tmp, "[37m", "\u001B[0m");
                     y = true;
                     
                 }

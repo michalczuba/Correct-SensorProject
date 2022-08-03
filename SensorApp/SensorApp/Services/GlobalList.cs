@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Common.Modeles;
 using SensorApp.Lists;
@@ -16,21 +18,37 @@ namespace SensorApp.Services
         }
         public static void ToAdd(IEnumerable<BleDeviceModel> list, List<SensorModel> CheckList)
         {
+
+            //Console.WriteLine($"Comapre list count:{list.Count()} with Checklist count: {CheckList.Count}");
+            //string vart = list.First().Mac;
+            //Console.WriteLine("|"+list.First().Mac+ "| Size:" + list.First().Mac.Length);
+            //Console.WriteLine("|" + vart + "| Size:" + vart.Length);
+            //string[] tmp = vart.Split('m',' ','\n');
+            //foreach (var lol in tmp)
+            //Console.WriteLine($"|{lol}|");
+            //Console.WriteLine("|"+CheckList.First().Mac + "| Size:" + CheckList.First().Mac.Length);
+            
             foreach (var model in list)
             {
-                if (!CheckList.Exists(x => x.Mac == model.Mac))
-                    continue;
-                int index = _list.FindIndex(x => x.Mac == model.Mac);
-                if (index!=-1)
-                {
-                    foreach (var val in model.DBm)
+                //if (CheckList.Exists(x => x.Mac == model.Mac))
+                
+                
+                if(CheckList.FindIndex(x => x.Mac.Equals(model.Mac,StringComparison.OrdinalIgnoreCase))!=-1)
+                    //if (CheckList.FindIndex(x => x.Mac.Contains(model.Mac)) != -1)
                     {
-                        _list[index].AddToRSSI(val);
+                    //continue;
+                    int index = _list.FindIndex(x => x.Mac == model.Mac);
+                    if (index != -1)
+                    {
+                        foreach (var val in model.DBm)
+                        {
+                            _list[index].AddToRSSI(val);
+                        }
                     }
-                }
-                else
-                {
-                    _list.Add(model);
+                    else
+                    {
+                        _list.Add(model);
+                    }
                 }
 
             }

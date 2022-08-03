@@ -17,5 +17,5 @@ C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\obj\Debug\net6.0\Sen
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\obj\Debug\net6.0\SensorApp.genruntimeconfig.cache
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\obj\Debug\net6.0\ref\SensorApp.dll
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\bin\Debug\net6.0\HciConfig.json
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\bin\Debug\net6.0\CsvHelper.dll
+C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorApp\bin\Debug\net6.0\BlescanConfig.json

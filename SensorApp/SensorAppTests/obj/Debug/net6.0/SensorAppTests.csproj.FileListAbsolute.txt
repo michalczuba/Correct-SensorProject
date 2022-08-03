@@ -105,5 +105,5 @@ C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorAppTests\obj\Debug\net6.
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorAppTests\obj\Debug\net6.0\SensorAppTests.pdb
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorAppTests\obj\Debug\net6.0\SensorAppTests.genruntimeconfig.cache
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorAppTests\obj\Debug\net6.0\ref\SensorAppTests.dll
-C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorAppTests\bin\Debug\net6.0\HciConfig.json
 C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorAppTests\bin\Debug\net6.0\CsvHelper.dll
+C:\Users\jakub.mrozowski\Desktop\My App\SensorApp\SensorAppTests\bin\Debug\net6.0\BlescanConfig.json

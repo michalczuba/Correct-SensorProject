@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Common.Modeles;
 namespace SensorApp.Servis
@@ -18,7 +19,8 @@ namespace SensorApp.Servis
                 {
                     var line = reader.ReadLine();
                     var splited = line.Split(';');
-                    SensorModel tmp = new SensorModel(splited[0], splited[1]);
+                    var SplitedMacCorrection = System.Text.RegularExpressions.Regex.Replace(splited[0], @"\s+", "");
+                    SensorModel tmp = new SensorModel(SplitedMacCorrection, splited[1]);
                     ListOfMac.Add(tmp);
                 }
                 return ListOfMac;
