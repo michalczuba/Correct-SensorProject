@@ -8,21 +8,24 @@ namespace Common.ListModelsToModelCsv
         public class PartialBleDiviceModel
         {
 
-            public string mac { get; set; }
-            public int rssi { get; set; }
-            //public int man { get; set; } 
+            public string Mac { get; set; }
+            public int Rssi { get; set; }
+            public string SerialNumber { get; set; } 
         }
-        public static void ListOfBleDeviceModelToCsvFile(IEnumerable<BleDeviceModel> list)
+        public static void ListOfBleDeviceModelToCsvFile(IEnumerable<BleDeviceModel> list,List<SensorModel> CsvFile)
         {
 
 
             var ListPB = new List<PartialBleDiviceModel>();
             foreach (var val in list)
             {
+                int index = CsvFile.FindIndex(x => x.Mac.Equals(val.Mac, StringComparison.OrdinalIgnoreCase));
+                if (index == -1)
+                    continue;
                 PartialBleDiviceModel PB = new PartialBleDiviceModel();
-                PB.mac = val.Mac;
-                PB.rssi = val.Mediana;
-                //PB.man = 0;
+                PB.Mac = val.Mac;
+                PB.Rssi = val.Mediana;
+                PB.SerialNumber = CsvFile[index].SerialNumber;
                 ListPB.Add(PB);
 
             }

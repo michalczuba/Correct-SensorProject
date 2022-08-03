@@ -6,7 +6,7 @@ using SensorApp.Lists;
 using SensorApp.Services;
 using SensorApp.Servis;
 
-
+Console.ReadKey();
 
 string BlescanParametersSerialized = File.ReadAllText(@"BlescanConfig.json");
 BlescanParameters blescan = JsonConvert.DeserializeObject<BlescanParameters>(BlescanParametersSerialized);
@@ -34,7 +34,7 @@ for (int i = 1; i <= blescan.NumberOfScansToDo; i++)
     Console.WriteLine("Global list Count: " + GlobalList.R().Count);
 }
 //SensorModelHelper.DisplaySensorList(GlobalList.R());
-ListOfBleDeviceModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R());
+ListOfBleDeviceModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R(),listSensor.SensorList);
 Console.WriteLine($"Finish with GlobalList Count: {GlobalList.R().Count}");
 Console.ForegroundColor = ConsoleColor.White;
 if (GlobalList.R().Count != 0)
