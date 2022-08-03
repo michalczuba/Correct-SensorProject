@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using Common;
 using Common.Modeles;
 namespace SensorApp.Servis
 {
     public class BlePhrase : IBlePhrase
     {
-        public string GetStringBettwenTexts(string input,string start,string end)
+        public string GetStringBettwenTexts(string input, string start, string end)
         {
             string result;
             int posision1 = input.IndexOf(start) + start.Length;
             int posision2 = input.IndexOf(end);
-            result = input.Substring(posision1, posision2-posision1-1);
+            result = input.Substring(posision1, posision2 - posision1 - 1);
             return result;
         }
         public IEnumerable<byte> StringToByteList(string hex)
@@ -28,7 +23,7 @@ namespace SensorApp.Servis
         {
 
             List<BleDeviceModel> ListOfBlue = new List<BleDeviceModel>();
-            string[] phrase = com.Split(' ', '\t','\n');
+            string[] phrase = com.Split(' ', '\t', '\n');
             int size = phrase.Length;
             string mac = "";
             int DBM = 0;
@@ -40,15 +35,19 @@ namespace SensorApp.Servis
                 if (phrase[i] == "(update):")
                 {
                     string tmp = phrase[i + 1];
-                    mac = GetStringBettwenTexts(tmp,"[37m","\u001B[0m");
+                    mac = GetStringBettwenTexts(tmp, "[37m", "\u001B[0m");
+                    StringIsMac check = new StringIsMac();
+                    check.IsMac(mac);
                     y = false;
                 }
                 if (phrase[i] == "(new):")
                 {
                     string tmp = phrase[i + 1];
                     mac = GetStringBettwenTexts(tmp, "[37m", "\u001B[0m");
+                    StringIsMac check = new StringIsMac();
+                    check.IsMac(mac);
                     y = true;
-                    
+
                 }
                 if (phrase[i] == "dBm")
                 {
@@ -59,21 +58,21 @@ namespace SensorApp.Servis
                 {
                     if (y)
                     {
-                        
-                        
-                            string input = phrase[i + 1].ToString();
-                            int input_size = input.Length;
-                            input = input.Substring(1, input_size - 2);
-                            BL = StringToByteList(input);
-                            BleDeviceModel tmp = new BleDeviceModel(mac, DBM, BL);
-                            ListOfBlue.Add(tmp);
-                            
-                        
+
+
+                        string input = phrase[i + 1].ToString();
+                        int input_size = input.Length;
+                        input = input.Substring(1, input_size - 2);
+                        BL = StringToByteList(input);
+                        BleDeviceModel tmp = new BleDeviceModel(mac, DBM, BL);
+                        ListOfBlue.Add(tmp);
+
+
                     }
                     else
                     {
-                        if(ListOfBlue.Exists(x => x.Mac ==mac))
-                        ListOfBlue[ListOfBlue.FindIndex(x => x.Mac == mac)].AddToRSSI(DBM);
+                        if (ListOfBlue.Exists(x => x.Mac == mac))
+                            ListOfBlue[ListOfBlue.FindIndex(x => x.Mac == mac)].AddToRSSI(DBM);
                     }
 
                 }
@@ -95,7 +94,7 @@ namespace SensorApp.Servis
             */
         }
 
-        
+
     }
 }
 

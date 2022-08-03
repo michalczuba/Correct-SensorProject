@@ -1,7 +1,5 @@
-using SensorApp.Lists;
 using Common.Modeles;
 using SensorApp.Servis;
-using System.Linq;
 
 namespace SensorAppTests
 {
@@ -124,7 +122,7 @@ namespace SensorAppTests
         Manufacturer: <020dffe072a000ac010000ac000000> Device (update): 60:77:71:60:ce:46 (public), -89 dBm
         Flags: <06>
         Manufacturer: <020dffe072a000ac000000b8000000>", 7)]
-        public void SchouldReturnCorrectRssiCount(string input,int expected)
+        public void SchouldReturnCorrectRssiCount(string input, int expected)
         {
             //Arnage
             IBlePhrase blePhrase = new BlePhrase();

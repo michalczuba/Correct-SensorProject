@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SensorApp.Lists;
-using Common.Modeles;
-using SensorApp.Servis;
-namespace SensorAppTests
+﻿namespace SensorAppTests
 {
     public class TestForSensorModelHelper
     {

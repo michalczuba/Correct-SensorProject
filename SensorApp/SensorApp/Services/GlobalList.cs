@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Common.Modeles;
-using SensorApp.Lists;
+﻿using Common.Modeles;
 namespace SensorApp.Services
 {
     static class GlobalList
@@ -27,16 +19,11 @@ namespace SensorApp.Services
             //foreach (var lol in tmp)
             //Console.WriteLine($"|{lol}|");
             //Console.WriteLine("|"+CheckList.First().Mac + "| Size:" + CheckList.First().Mac.Length);
-            
+
             foreach (var model in list)
             {
-                //if (CheckList.Exists(x => x.Mac == model.Mac))
-                
-                
-                if(CheckList.FindIndex(x => x.Mac.Equals(model.Mac,StringComparison.OrdinalIgnoreCase))!=-1)
-                    //if (CheckList.FindIndex(x => x.Mac.Contains(model.Mac)) != -1)
-                    {
-                    //continue;
+                if (CheckList.FindIndex(x => x.Mac.Equals(model.Mac, StringComparison.OrdinalIgnoreCase)) != -1)
+                {
                     int index = _list.FindIndex(x => x.Mac == model.Mac);
                     if (index != -1)
                     {

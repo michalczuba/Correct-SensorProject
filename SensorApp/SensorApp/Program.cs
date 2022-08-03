@@ -1,11 +1,10 @@
-﻿using SensorApp.Lists;
-using Common;
+﻿using Common;
+using Common.ListModelsToModelCsv;
+using Newtonsoft.Json;
+using SensorApp;
+using SensorApp.Lists;
 using SensorApp.Services;
 using SensorApp.Servis;
-using SensorApp;
-using System.Text.Json.Serialization;
-using Newtonsoft.Json;
-using Common.ListModelsToModelCsv;
 
 
 
@@ -31,18 +30,18 @@ for (int i = 1; i <= blescan.NumberOfScansToDo; i++)
     listBluetooth.ReadBlue(com);
     Console.WriteLine("Reading list inicialize");
     Console.ForegroundColor = ConsoleColor.Green;
-    GlobalList.ToAdd(listBluetooth.BluetoothList,listSensor.SensorList);
+    GlobalList.ToAdd(listBluetooth.BluetoothList, listSensor.SensorList);
     Console.WriteLine("Global list Count: " + GlobalList.R().Count);
 }
 //SensorModelHelper.DisplaySensorList(GlobalList.R());
 ListOfBleDeviceModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R());
 Console.WriteLine($"Finish with GlobalList Count: {GlobalList.R().Count}");
 Console.ForegroundColor = ConsoleColor.White;
-if (GlobalList.R().Count!=0)
+if (GlobalList.R().Count != 0)
 {
     int MedianRssi = CheckingRssiMedian.ChceckMedianRssi();
     double StandardOffset = 1 + double.Parse(blescan.StandardOffset.Substring(0, blescan.StandardOffset.Length - 1)) / 100;
-    SensorModelHelper.DisplayRssiWithWrongOffset(MedianRssi * StandardOffset,listSensor.SensorList);
+    SensorModelHelper.DisplayRssiWithWrongOffset(MedianRssi * StandardOffset, listSensor.SensorList);
     //Console.WriteLine(MedianRssi + " * " + StandardOffset + " = " + MedianRssi * StandardOffset);
 }
 
