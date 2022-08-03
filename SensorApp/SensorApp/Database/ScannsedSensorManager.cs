@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Modeles;
+﻿using Common.Modeles;
 using SensorApp.Servis;
 namespace SensorApp.Lists
 {
@@ -16,7 +11,7 @@ namespace SensorApp.Lists
         {
             _blePharse = phrase;
         }
-       
+
         public void ReadBlue(string com)
         {
             BluetoothList = new List<BleDeviceModel>();

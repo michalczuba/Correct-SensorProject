@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Common.Modeles
+﻿namespace Common.Modeles
 {
     public class SensorModel
     {
-        public SensorModel(string mac,string serialNumber)
+        public SensorModel(string mac, string serialNumber)
         {
             Mac = mac;
             SerialNumber = serialNumber;

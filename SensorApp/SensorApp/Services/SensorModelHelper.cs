@@ -1,33 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Modeles;
+﻿using Common.Modeles;
 namespace SensorApp.Services
 {
     public class SensorModelHelper
     {
-        public static void DisplaySensorList(IEnumerable<BleDeviceModel> ListBlueTooth)
+        public static void DisplaySensorList(IEnumerable<BleDeviceModel> ListBlueTooth, List<SensorModel> CsvFile)
         {
             foreach (var val in ListBlueTooth)
             {
-                string output = val.Mac + " ";
-                int size = 0;
-                int dbm = 0;
-                foreach (var value in val.DBm)
-                {
-                    size++;
-                    dbm += value;
-                }
-                dbm /= size;
-                output += dbm.ToString() + " ";
-                foreach (var value in val.Manufacture)
-                {
-                    output += value.ToString() + ",";
-                }
-                int output_size = output.Length;
-                output = output.Substring(0, output_size - 1);
+                int index = CsvFile.FindIndex(x => x.Mac.Equals(val.Mac, StringComparison.OrdinalIgnoreCase));
+                if (index == -1)
+                    continue;
+                string output = val.Mac + " " + CsvFile[index].SerialNumber + " ";
+
+                int dbm = val.Mediana;
+
+                output += dbm.ToString();
+                //foreach (var value in val.Manufacture)
+                //{
+                //    output += value.ToString() + ",";
+                //}
+                //int output_size = output.Length;
+                //output = output.Substring(0, output_size - 1);
+                output += " " + val.DBm.Count();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($"Warning: ");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(output);
             }
         }
@@ -48,6 +45,11 @@ namespace SensorApp.Services
                 avrage += val;
             }
             Console.WriteLine(avrage / value_size);
+        }
+        public static void DisplayRssiWithWrongOffset(double Rw, List<SensorModel> CsvFile)
+        {
+            IEnumerable<BleDeviceModel> list = GlobalList.R().Where(x => x.Mediana < Rw).ToList();
+            DisplaySensorList(list, CsvFile);
         }
     }
 }
