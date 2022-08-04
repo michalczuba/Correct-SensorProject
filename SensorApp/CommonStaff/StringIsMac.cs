@@ -19,5 +19,15 @@ namespace Common
                 Environment.Exit(0);
             }
         }
+        public bool IsMacBool(string mac)
+        {
+            mac = mac.Replace(" ", "").Replace(":", "").Replace("-", "");
+            Regex r = new Regex("^[a-fA-F0-9]{12}$");
+            if (!r.IsMatch(mac))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

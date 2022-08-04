@@ -3,7 +3,24 @@ namespace SensorApp.Services
 {
     public class SensorModelHelper
     {
-        public static void DisplaySensorList(IEnumerable<BleDeviceModel> ListBlueTooth, List<SensorModel> CsvFile)
+        public static void DisplaySensorListMissing(List<SensorModel> CsvFile)
+        {
+            List<BleDeviceModel> TmpList = GlobalList.R();
+            foreach (var val in CsvFile)//Missings:
+            {
+                if (TmpList.FindIndex(x => x.Mac.Equals(val.Mac, StringComparison.OrdinalIgnoreCase)) == -1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write($"Missing: ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write($"{val.Mac} ");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine(val.SerialNumber);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+        }
+        public static void DisplaySensorListWarning(IEnumerable<BleDeviceModel> ListBlueTooth, List<SensorModel> CsvFile)
         {
             foreach (var val in ListBlueTooth)//Warnings
             {
@@ -27,20 +44,6 @@ namespace SensorApp.Services
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(output);
             }
-            List<BleDeviceModel> TmpList =GlobalList.R();
-            foreach(var val in CsvFile)//Missings:
-            {
-                if(TmpList.FindIndex(x => x.Mac.Equals(val.Mac,StringComparison.OrdinalIgnoreCase))==-1)
-                {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write($"Missing: ");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($"{val.Mac} ");
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine(val.SerialNumber);
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
-            }
         }
         public static void DisplayRssiMedian(BleDeviceModel model)
         {
@@ -63,7 +66,7 @@ namespace SensorApp.Services
         public static void DisplayRssiWithWrongOffset(double Rw, List<SensorModel> CsvFile)
         {
             IEnumerable<BleDeviceModel> list = GlobalList.R().Where(x => x.Mediana < Rw).ToList();
-            DisplaySensorList(list, CsvFile);
+            DisplaySensorListWarning(list, CsvFile);
         }
     }
 }

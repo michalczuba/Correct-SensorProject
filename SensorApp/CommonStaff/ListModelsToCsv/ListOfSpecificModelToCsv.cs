@@ -16,6 +16,7 @@ namespace Common.ListModelsToModelCsv
         {
             public string SerialNumber { get; set; }
             public string Mac { get; set; }
+            
 
         }
         public static void ListOfBleDeviceModelToCsvFile(IEnumerable<BleDeviceModel> list,List<SensorModel> CsvFile)

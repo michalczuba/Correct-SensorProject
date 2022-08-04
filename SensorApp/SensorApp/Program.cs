@@ -46,6 +46,7 @@ if (GlobalList.R().Count != 0)
     SensorModelHelper.DisplayRssiWithWrongOffset(MedianRssi * StandardOffset, listSensor.SensorList);
     //Console.WriteLine(MedianRssi + " * " + StandardOffset + " = " + MedianRssi * StandardOffset);
 }
+SensorModelHelper.DisplaySensorListMissing(listSensor.SensorList);
 
 
 //Brak dalszych modyfikacji.
