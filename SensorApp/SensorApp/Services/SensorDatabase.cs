@@ -17,8 +17,8 @@ namespace SensorApp.Servis
                     var splited = line.Split(';',',');
                     var SplitedMacCorrection = System.Text.RegularExpressions.Regex.Replace(splited[0], @"\s+", "");
                     StringIsMac check = new StringIsMac();
-                    Console.WriteLine(SplitedMacCorrection);
-                    if (SplitedMacCorrection == "Mac"|| SplitedMacCorrection == "SerialNumber")
+                    //Console.WriteLine(SplitedMacCorrection);
+                    if (SplitedMacCorrection.Equals("mac",StringComparison.OrdinalIgnoreCase)|| SplitedMacCorrection.Equals("serialnumber",StringComparison.OrdinalIgnoreCase)|| SplitedMacCorrection.Equals("sn", StringComparison.OrdinalIgnoreCase))
                         continue;
                     bool MacCheck =check.IsMacBool(SplitedMacCorrection);
                     SensorModel tmp;
