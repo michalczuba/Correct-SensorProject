@@ -5,7 +5,7 @@ namespace SensorApp.Services
     {
         public static void DisplaySensorList(IEnumerable<BleDeviceModel> ListBlueTooth, List<SensorModel> CsvFile)
         {
-            foreach (var val in ListBlueTooth)
+            foreach (var val in ListBlueTooth)//Warnings
             {
                 int index = CsvFile.FindIndex(x => x.Mac.Equals(val.Mac, StringComparison.OrdinalIgnoreCase));
                 if (index == -1)
@@ -26,6 +26,20 @@ namespace SensorApp.Services
                 Console.Write($"Warning: ");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(output);
+            }
+            List<BleDeviceModel> TmpList =GlobalList.R();
+            foreach(var val in CsvFile)//Missings:
+            {
+                if(TmpList.FindIndex(x => x.Mac.Equals(val.Mac,StringComparison.OrdinalIgnoreCase))==-1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write($"Missing: ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write($"{val.Mac} ");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine(val.SerialNumber);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
         }
         public static void DisplayRssiMedian(BleDeviceModel model)

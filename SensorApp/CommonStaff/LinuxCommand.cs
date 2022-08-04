@@ -10,15 +10,26 @@ namespace Common
             {
                 StartInfo = new ProcessStartInfo
                 {
+                    //FileName = "/bin/bash",
+                    //Arguments = "-c \"" + command + "\"",
+                    //UseShellExecute = false,
+                    //RedirectStandardOutput = true,
+                    //CreateNoWindow = true
                     FileName = "/bin/bash",
                     Arguments = "-c \"" + command + "\"",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
-                    CreateNoWindow = true
+                    RedirectStandardError = true
+
                 }
             };
+            //proc.Start();
+            //proc.WaitForExit();
+            //return proc.StandardOutput.ReadToEnd();
             proc.Start();
-            proc.WaitForExit();
+            //proc.BeginOutputReadLine();
+            proc.WaitForExit(5000);
+          
             return proc.StandardOutput.ReadToEnd();
         }
     }
