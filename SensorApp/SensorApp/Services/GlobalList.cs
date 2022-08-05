@@ -45,5 +45,12 @@ namespace SensorApp.Services
         {
             return _list;
         }
+        public static void OneRSSI(int dbm)
+        {
+            foreach (var model in _list)
+            {
+                model.SetRSSITo(dbm);
+            }
+        }
     }
 }

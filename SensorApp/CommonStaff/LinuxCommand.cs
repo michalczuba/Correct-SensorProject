@@ -29,7 +29,7 @@ namespace Common
             proc.Start();
             //proc.BeginOutputReadLine();
             proc.WaitForExit(5000);
-          
+
             return proc.StandardOutput.ReadToEnd();
         }
     }

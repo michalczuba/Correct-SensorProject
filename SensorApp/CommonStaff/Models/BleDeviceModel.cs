@@ -16,6 +16,12 @@
             DBm.Sort();
             Mediana = DBm[DBm.Count / 2];
         }
+        public void SetRSSITo(int dBm)
+        {
+            DBm.Clear();
+            DBm.Add(dBm);
+            Mediana = dBm;
+        }
         public string Mac { private set; get; }
         public List<int> DBm { private set; get; }
         public IEnumerable<byte> Manufacture { private set; get; }

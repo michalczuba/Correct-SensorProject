@@ -10,11 +10,11 @@ namespace SensorApp.Services
             {
                 if (TmpList.FindIndex(x => x.Mac.Equals(val.Mac, StringComparison.OrdinalIgnoreCase)) == -1)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"Missing: ");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"{val.Mac} ");
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine(val.SerialNumber);
                     Console.ForegroundColor = ConsoleColor.White;
                 }
@@ -39,7 +39,7 @@ namespace SensorApp.Services
                 //int output_size = output.Length;
                 //output = output.Substring(0, output_size - 1);
                 output += " " + val.DBm.Count();
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write($"Warning: ");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(output);
