@@ -56,14 +56,12 @@ namespace SensorApp.Servis
                 }
                 if (phrase[i] == "Manufacturer:")
                 {
+                    string input = phrase[i + 1].ToString();
+                    int input_size = input.Length;
+                    input = input.Substring(1, input_size - 2);
+                    BL = StringToByteList(input);
                     if (y)
                     {
-
-
-                        string input = phrase[i + 1].ToString();
-                        int input_size = input.Length;
-                        input = input.Substring(1, input_size - 2);
-                        BL = StringToByteList(input);
                         BleDeviceModel tmp = new BleDeviceModel(mac, DBM, BL);
                         ListOfBlue.Add(tmp);
 
@@ -72,7 +70,11 @@ namespace SensorApp.Servis
                     else
                     {
                         if (ListOfBlue.Exists(x => x.Mac == mac))
+                        {
                             ListOfBlue[ListOfBlue.FindIndex(x => x.Mac == mac)].AddToRSSI(DBM);
+                            ListOfBlue[ListOfBlue.FindIndex(x => x.Mac == mac)].SetManTo(BL);
+                        }
+                            
                     }
 
                 }

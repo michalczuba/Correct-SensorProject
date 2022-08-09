@@ -1,6 +1,8 @@
 {
   "hci": "0",
-  "NumberOfScansToDo": 10,
-  "StandardOffset": "1%",
-  "NameOfCsvFile" : "SensorList.csv"
+  "NumberOfScansToDo": 20,
+  "StandardOffsetRSSI": "20%",
+  "StandardOffsetADV": "1%",
+  "Index":  5,
+  "NameOfCsvFile": "SensorNew.csv"
 }

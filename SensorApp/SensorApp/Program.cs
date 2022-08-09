@@ -39,11 +39,52 @@ for (int i = 1; i <= blescan.NumberOfScansToDo; i++)
 Console.WriteLine($"Finish with GlobalList Count: {GlobalList.R().Count}");
 Console.ForegroundColor = ConsoleColor.White;
 
-int MedianRssi = CheckingRssiMedian.ChceckMedianRssi();
-double StandardOffset = 1 + double.Parse(blescan.StandardOffset.Substring(0, blescan.StandardOffset.Length - 1)) / 100;
-SensorModelHelper.DisplayRssiWithWrongOffset(MedianRssi * StandardOffset, listSensor.SensorList);
+double all_sensors = GlobalList.R().Count;
+double good_sensors = GlobalList.R().Count;
+double warning_sensors = 0;
+double missing_sensors = 0;
+double warningAdv = 0;
+int index = blescan.Index;
+
+
+
+int MedianRssi = CheckingRssi.ChceckMedianRssi();
+long AvregeRssi = CheckingRssi.CheckingAvregeRssi();
+long AvregeAdv = GlobalList.ChceckAvregeAdvOnDefineIndex(index);
+double StandardOffset = 1 + double.Parse(blescan.StandardOffsetRSSI.Substring(0, blescan.StandardOffsetRSSI.Length - 1)) / 100;
+double StandardOffsetUp = 1 + double.Parse(blescan.StandardOffsetADV.Substring(0, blescan.StandardOffsetADV.Length - 1)) / 100;
+double StandardOffsetDown = 1 - double.Parse(blescan.StandardOffsetADV.Substring(0, blescan.StandardOffsetADV.Length - 1)) / 100;
+warning_sensors = SensorModelHelper.DisplayRssiWithWrongOffset(AvregeRssi * StandardOffset, listSensor.SensorList);
+warningAdv=SensorModelHelper.DisplayAdvWithWrongOffset(AvregeAdv * StandardOffsetUp, AvregeAdv * StandardOffsetDown,index,listSensor.SensorList);
 //Console.WriteLine(MedianRssi + " * " + StandardOffset + " = " + MedianRssi * StandardOffset);
-SensorModelHelper.DisplaySensorListMissing(listSensor.SensorList);
+missing_sensors = SensorModelHelper.DisplaySensorListMissing(listSensor.SensorList);
+if(warningAdv>warning_sensors)
+good_sensors = good_sensors - warningAdv - missing_sensors;
+else
+good_sensors = (good_sensors - warning_sensors) - missing_sensors;
+if (all_sensors != 0)
+{
+    good_sensors /= all_sensors;
+    warning_sensors /= all_sensors;
+    missing_sensors /= all_sensors;
+    warningAdv /= all_sensors;
+}
+good_sensors *= 100;
+warning_sensors *= 100;
+missing_sensors *= 100;
+warningAdv *= 100;
+
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine($"Percent of good sensors {good_sensors.ToString("0.##")}%");
+Console.ForegroundColor = ConsoleColor.Yellow;
+Console.WriteLine($"Percent of warning sensors {warning_sensors.ToString("0.##")}%");
+Console.ForegroundColor = ConsoleColor.Red;
+Console.WriteLine($"Percent of missing sensors {missing_sensors.ToString("0.##")}%");
+Console.ForegroundColor = ConsoleColor.DarkRed;
+Console.WriteLine($"Percent of warning adv. sensors {warningAdv.ToString("0.##")}%");
+Console.ForegroundColor = ConsoleColor.White;
+//Console.WriteLine("Avrage:");
+//SensorModelHelper.DisplayRssiWithWrongOffset(AvregeRssi* StandardOffset, listSensor.SensorList);
 while (true)
 {
     Console.WriteLine("--------------------------------------------------------------------");
@@ -58,7 +99,7 @@ while (true)
     }
     if (check.Equals("r", StringComparison.OrdinalIgnoreCase))
     {
-        GlobalList.OneRSSI(MedianRssi);
+        GlobalList.OneRSSI(unchecked((int)AvregeRssi));
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Rescan");
         for (int i = 1; i <= blescan.NumberOfScansToDo; i++)
@@ -80,11 +121,40 @@ while (true)
 
         Console.WriteLine($"Finish with GlobalList Count: {GlobalList.R().Count}");
         Console.ForegroundColor = ConsoleColor.White;
-
-        MedianRssi = CheckingRssiMedian.ChceckMedianRssi();
-        SensorModelHelper.DisplayRssiWithWrongOffset(MedianRssi * StandardOffset, listSensor.SensorList);
+        all_sensors = GlobalList.R().Count;
+        good_sensors = all_sensors;
+        MedianRssi = CheckingRssi.ChceckMedianRssi();
+        AvregeRssi = CheckingRssi.CheckingAvregeRssi();
+        AvregeAdv = GlobalList.ChceckAvregeAdvOnDefineIndex(index);
+        SensorModelHelper.DisplayAdvWithWrongOffset(AvregeAdv * StandardOffsetUp, AvregeAdv * StandardOffsetDown, index, listSensor.SensorList);
+        warning_sensors = SensorModelHelper.DisplayRssiWithWrongOffset(AvregeRssi * StandardOffset, listSensor.SensorList);
         //Console.WriteLine(MedianRssi + " * " + StandardOffset + " = " + MedianRssi * StandardOffset);
-        SensorModelHelper.DisplaySensorListMissing(listSensor.SensorList);
+        missing_sensors = SensorModelHelper.DisplaySensorListMissing(listSensor.SensorList);
+        if (warningAdv > warning_sensors)
+            good_sensors = (good_sensors - warningAdv) - missing_sensors;
+        else
+            good_sensors = (good_sensors - warning_sensors) - missing_sensors;
+        if (all_sensors != 0)
+        {
+            good_sensors /= all_sensors;
+            warning_sensors /= all_sensors;
+            missing_sensors /= all_sensors;
+            warningAdv /= all_sensors;
+        }
+        good_sensors *= 100;
+        warning_sensors *= 100;
+        missing_sensors *= 100;
+        warningAdv *= 100;
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"Percent of good sensors {good_sensors.ToString("0.##")}%");
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"Percent of warning sensors {warning_sensors.ToString("0.##")}%");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"Percent of missing sensors {missing_sensors.ToString("0.##")}%");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine($"Percent of warning adv. sensors {warningAdv.ToString("0.##")}%");
+        Console.ForegroundColor = ConsoleColor.White;
     }
     else
     {
@@ -92,7 +162,7 @@ while (true)
     }
 
 }
-ListOfSpecificModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R(), listSensor.SensorList, MedianRssi * StandardOffset);
+ListOfSpecificModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R(), listSensor.SensorList, AvregeRssi * StandardOffset,AvregeAdv*StandardOffsetUp,AvregeAdv*StandardOffsetDown,index);
 
 
 //Brak dalszych modyfikacji.

@@ -4,7 +4,9 @@
     {
         public string hci { get; set; }
         public int NumberOfScansToDo { get; set; }
-        public string StandardOffset { get; set; }
+        public string StandardOffsetRSSI { get; set; }
+        public string StandardOffsetADV { get; set; }
         public string NameOfCsvFile { get; set; }
+        public int Index { get; set; }
     }
 }

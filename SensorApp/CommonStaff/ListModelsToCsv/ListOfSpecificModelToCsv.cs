@@ -12,8 +12,9 @@ namespace Common.ListModelsToModelCsv
             public int? Rssi { get; set; }
 
             public string WarningOrMissing { get; set; }
+            public string WarningAdv { get; set; }
         }
-        public static void ListOfBleDeviceModelToCsvFile(IEnumerable<BleDeviceModel> list, List<SensorModel> CsvFile, double Rw)
+        public static void ListOfBleDeviceModelToCsvFile(IEnumerable<BleDeviceModel> list, List<SensorModel> CsvFile, double Rw,double AdvUp,double AdvDown,int IndexAdv)
         {
             var ListPB = new List<PartialBleDiviceModel>();
             List<BleDeviceModel> TmpList = list.ToList();
@@ -32,11 +33,15 @@ namespace Common.ListModelsToModelCsv
                 {
                     PB.Mac = val.Mac;
                     PB.SerialNumber = val.SerialNumber;
-                    PB.Rssi = TmpList[index].Mediana;
+                    PB.Rssi = TmpList[index].Avrege;
                     if (PB.Rssi < Rw)
                         PB.WarningOrMissing = "Warning";
                     else
                         PB.WarningOrMissing = "";
+                    //if(TmpList[index].Manufacture.ElementAt(IndexAdv) > AdvUp || TmpList[index].Manufacture.ElementAt(IndexAdv) < AdvDown)
+                    //{
+                    //    PB.WarningAdv = "WarningAdv";
+                    //}
                 }
 
 

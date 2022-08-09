@@ -1,4 +1,6 @@
 ﻿using Common.Modeles;
+using System.Linq;
+
 namespace SensorApp.Services
 {
     static class GlobalList
@@ -51,6 +53,16 @@ namespace SensorApp.Services
             {
                 model.SetRSSITo(dbm);
             }
+        }
+        public static long ChceckAvregeAdvOnDefineIndex(int index)
+        {
+            long AvregeAdv = 0;
+            var byteList = _list.FindAll(x => x.Manufacture.Count() >= index)
+                                .Select(x => x.Manufacture.ElementAt(index - 1))
+                                .ToList();
+            foreach (var val in byteList)
+                AvregeAdv += val;
+            return AvregeAdv / byteList.Count();
         }
     }
 }

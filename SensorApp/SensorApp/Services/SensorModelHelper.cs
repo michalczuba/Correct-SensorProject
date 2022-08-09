@@ -3,9 +3,10 @@ namespace SensorApp.Services
 {
     public class SensorModelHelper
     {
-        public static void DisplaySensorListMissing(List<SensorModel> CsvFile)
+        public static int DisplaySensorListMissing(List<SensorModel> CsvFile)
         {
             List<BleDeviceModel> TmpList = GlobalList.R();
+            int tmp = 0;
             foreach (var val in CsvFile)//Missings:
             {
                 if (TmpList.FindIndex(x => x.Mac.Equals(val.Mac, StringComparison.OrdinalIgnoreCase)) == -1)
@@ -17,11 +18,14 @@ namespace SensorApp.Services
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine(val.SerialNumber);
                     Console.ForegroundColor = ConsoleColor.White;
+                    tmp++;
                 }
             }
+            return tmp;
         }
         public static void DisplaySensorListWarning(IEnumerable<BleDeviceModel> ListBlueTooth, List<SensorModel> CsvFile)
         {
+
             foreach (var val in ListBlueTooth)//Warnings
             {
                 int index = CsvFile.FindIndex(x => x.Mac.Equals(val.Mac, StringComparison.OrdinalIgnoreCase));
@@ -29,7 +33,7 @@ namespace SensorApp.Services
                     continue;
                 string output = val.Mac + " " + CsvFile[index].SerialNumber + " ";
 
-                int dbm = val.Mediana;
+                int dbm = val.Avrege;
 
                 output += dbm.ToString();
                 //foreach (var value in val.Manufacture)
@@ -63,10 +67,43 @@ namespace SensorApp.Services
             }
             Console.WriteLine(avrage / value_size);
         }
-        public static void DisplayRssiWithWrongOffset(double Rw, List<SensorModel> CsvFile)
+        public static int DisplayRssiWithWrongOffset(double Rw, List<SensorModel> CsvFile)
         {
             IEnumerable<BleDeviceModel> list = GlobalList.R().Where(x => x.Mediana < Rw).ToList();
             DisplaySensorListWarning(list, CsvFile);
+            return list.Count();
+        }
+        public static int DisplayAdvWithWrongOffset(double offsetup,double offsetdown,int index, List<SensorModel> CsvFile)
+        {
+            var list = GlobalList.R();
+            int tmp = 0;
+            foreach(var val in list)
+            {
+                int indexVal = CsvFile.FindIndex(x => x.Mac.Equals(val.Mac, StringComparison.OrdinalIgnoreCase));
+                if (indexVal == -1)
+                    continue;
+                if (val.Manufacture.Count()>=index)
+                {
+                    if(val.Manufacture.ElementAt(index-1)>offsetup || val.Manufacture.ElementAt(index - 1) < offsetdown)
+                    {
+                        
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("Warning adv.: ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine($"{CsvFile[indexVal].Mac} {CsvFile[indexVal].SerialNumber} Has wrong  adv on {index} place!");
+                        tmp++;
+                    }
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write("Warning adv.: ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($" {CsvFile[indexVal].Mac} {CsvFile[indexVal].SerialNumber} Has wrong size of adv!");
+                    tmp++;
+                }
+            }
+            return tmp;
         }
     }
 }
