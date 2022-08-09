@@ -38,10 +38,19 @@ namespace Common.ListModelsToModelCsv
                         PB.WarningOrMissing = "Warning";
                     else
                         PB.WarningOrMissing = "";
-                    //if(TmpList[index].Manufacture.ElementAt(IndexAdv) > AdvUp || TmpList[index].Manufacture.ElementAt(IndexAdv) < AdvDown)
-                    //{
-                    //    PB.WarningAdv = "WarningAdv";
-                    //}
+
+                    if(TmpList[index].Manufacture.Count()>= IndexAdv)
+                    {
+                        if (TmpList[index].Manufacture.ElementAt(IndexAdv - 1) > AdvUp || TmpList[index].Manufacture.ElementAt(IndexAdv - 1) < AdvDown)
+                        {
+                            PB.WarningAdv = "WarningAdv";
+                        }
+                    }
+                    else
+                    {
+                        PB.WarningAdv = "WarningAdv";
+                    }
+
                 }
 
 
