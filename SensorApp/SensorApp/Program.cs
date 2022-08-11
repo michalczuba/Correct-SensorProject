@@ -173,7 +173,7 @@ while (true)
 
 }
 //Uncoment line below to see avrege rssi
-//Console.WriteLine("Avrege Rssi: "+AvregeRssi);
+Console.WriteLine("Avrege Rssi: " + AvregeRssi);
 double seconds_of_work_and_pakages = blescan.PackagesPerS*(timeSpan.TotalSeconds+timeSpan.TotalMinutes*60);
 ListOfSpecificModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R(), listSensor.SensorList, AvregeRssi * StandardOffset,AvregeAdv*StandardOffsetUp,AvregeAdv*StandardOffsetDown,index, seconds_of_work_and_pakages);
 

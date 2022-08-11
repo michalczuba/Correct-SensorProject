@@ -67,7 +67,7 @@ namespace Common.ListModelsToModelCsv
             }
             Avrege_PP /= tmp;
             //Uncoment line below to see avrege package per
-            //Console.WriteLine("Avrega PP: "+Avrege_PP.ToString("0.##") + "%");
+            Console.WriteLine("Avrega PP: " + Avrege_PP.ToString("0.##") + "%");
             using (var writer = new StreamWriter("ScannedBleDeviceModelFile.csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
