@@ -27,10 +27,11 @@ for (int i = 1; i <= blescan.NumberOfScansToDo; i++)
     Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine($"Sudo command inicialize for {i} time!");
     string command = $"sudo blescan -i {blescan.hci}";
-    stopwatch.Start();
+    
     Console.WriteLine(command);
-    stopwatch.Stop();
+    stopwatch.Start();
     var com = LinuxCommand.SystemCommand(command);
+    stopwatch.Stop();
     var listBluetooth = new ScannsedSensorManager(new BlePhrase());
     Console.WriteLine("Making list inicialize");
     listBluetooth.ReadBlue(com);
@@ -115,10 +116,11 @@ while (true)
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"Sudo command inicialize for {i} time!");
             string command = $"sudo blescan -i {blescan.hci}";
-            stopwatch.Start();
+            
             Console.WriteLine(command);
-            stopwatch.Stop();
+            stopwatch.Start();
             var com = LinuxCommand.SystemCommand(command);
+            stopwatch.Stop();
             var listBluetooth = new ScannsedSensorManager(new BlePhrase());
             Console.WriteLine("Making list inicialize");
             listBluetooth.ReadBlue(com);
@@ -174,7 +176,8 @@ while (true)
 }
 //Uncoment line below to see avrege rssi
 Console.WriteLine("Avrege Rssi: " + AvregeRssi);
-double seconds_of_work_and_pakages = blescan.PackagesPerS*(timeSpan.TotalSeconds+timeSpan.TotalMinutes*60);
+double seconds_of_work_and_pakages = blescan.PackagesPerS*(timeSpan.Seconds+timeSpan.Minutes*60);
+//Console.WriteLine($"Time of scan and x pages: {blescan.PackagesPerS} pack/s * {timeSpan.TotalSeconds} = {seconds_of_work_and_pakages}");
 ListOfSpecificModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R(), listSensor.SensorList, AvregeRssi * StandardOffset,AvregeAdv*StandardOffsetUp,AvregeAdv*StandardOffsetDown,index, seconds_of_work_and_pakages);
 
 

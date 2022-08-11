@@ -34,7 +34,7 @@ namespace Common.ListModelsToModelCsv
                 }
                 else
                 {
-                    double check = (TmpList[index].DBm.Count / pakages);
+                    double check = (TmpList[index].DBm.Count / pakages)*100;
                     Avrege_PP += check;
                     tmp++;
                     PB.Pagaes_per = check.ToString("0.##") + "%";
