@@ -13,11 +13,14 @@ namespace Common.ListModelsToModelCsv
 
             public string WarningOrMissing { get; set; }
             public string WarningAdv { get; set; }
+            public string Pagaes_per { get; set; }
         }
-        public static void ListOfBleDeviceModelToCsvFile(IEnumerable<BleDeviceModel> list, List<SensorModel> CsvFile, double Rw,double AdvUp,double AdvDown,int IndexAdv)
+        public static void ListOfBleDeviceModelToCsvFile(IEnumerable<BleDeviceModel> list, List<SensorModel> CsvFile, double Rw,double AdvUp,double AdvDown,int IndexAdv,double pakages)
         {
             var ListPB = new List<PartialBleDiviceModel>();
             List<BleDeviceModel> TmpList = list.ToList();
+            double Avrege_PP = 0;
+            int tmp = 0;
             foreach (var val in CsvFile)
             {
                 PartialBleDiviceModel PB = new PartialBleDiviceModel();
@@ -31,6 +34,10 @@ namespace Common.ListModelsToModelCsv
                 }
                 else
                 {
+                    double check = (TmpList[index].DBm.Count / pakages);
+                    Avrege_PP += check;
+                    tmp++;
+                    PB.Pagaes_per = check.ToString("0.##") + "%";
                     PB.Mac = val.Mac;
                     PB.SerialNumber = val.SerialNumber;
                     PB.Rssi = TmpList[index].Avrege;
@@ -50,6 +57,7 @@ namespace Common.ListModelsToModelCsv
                     {
                         PB.WarningAdv = "WarningAdv";
                     }
+                    
 
                 }
 
@@ -57,6 +65,9 @@ namespace Common.ListModelsToModelCsv
                 ListPB.Add(PB);
 
             }
+            Avrege_PP /= tmp;
+            //Uncoment line below to see avrege package per
+            //Console.WriteLine("Avrega PP: "+Avrege_PP.ToString("0.##") + "%");
             using (var writer = new StreamWriter("ScannedBleDeviceModelFile.csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {

@@ -8,5 +8,6 @@
         public string StandardOffsetADV { get; set; }
         public string NameOfCsvFile { get; set; }
         public int Index { get; set; }
+        public double PackagesPerS { get; set; }
     }
 }

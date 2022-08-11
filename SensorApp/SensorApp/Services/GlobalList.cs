@@ -62,7 +62,10 @@ namespace SensorApp.Services
                                 .ToList();
             foreach (var val in byteList)
                 AvregeAdv += val;
-            return AvregeAdv / byteList.Count();
+            if (byteList.Count != 0)
+                return AvregeAdv / byteList.Count();
+            else
+                return 0;
         }
     }
 }

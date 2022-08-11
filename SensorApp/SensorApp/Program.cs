@@ -5,6 +5,7 @@ using SensorApp;
 using SensorApp.Lists;
 using SensorApp.Services;
 using SensorApp.Servis;
+using System.Diagnostics;
 Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine("Press any key to proced...");
 Console.ReadKey();
@@ -12,10 +13,12 @@ Console.ForegroundColor = ConsoleColor.White;
 string BlescanParametersSerialized = File.ReadAllText(@"BlescanConfig.json");
 BlescanParameters blescan = JsonConvert.DeserializeObject<BlescanParameters>(BlescanParametersSerialized);
 Console.ForegroundColor = ConsoleColor.Red;
+//Console.WriteLine(blescan.PackagesPerS);
 Console.WriteLine("Start");
 //string name;
 //name = Console.ReadLine();
 //string filename = name;
+Stopwatch stopwatch = new Stopwatch();
 var listSensor = new DatabaseSensorManager();
 listSensor.ReadFromFile(blescan.NameOfCsvFile);
 //Console.WriteLine(listSensor.SensorList.Count);
@@ -24,7 +27,9 @@ for (int i = 1; i <= blescan.NumberOfScansToDo; i++)
     Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine($"Sudo command inicialize for {i} time!");
     string command = $"sudo blescan -i {blescan.hci}";
+    stopwatch.Start();
     Console.WriteLine(command);
+    stopwatch.Stop();
     var com = LinuxCommand.SystemCommand(command);
     var listBluetooth = new ScannsedSensorManager(new BlePhrase());
     Console.WriteLine("Making list inicialize");
@@ -39,7 +44,7 @@ for (int i = 1; i <= blescan.NumberOfScansToDo; i++)
 Console.WriteLine($"Finish with GlobalList Count: {GlobalList.R().Count}");
 Console.ForegroundColor = ConsoleColor.White;
 
-double all_sensors = GlobalList.R().Count;
+double all_sensors = listSensor.SensorList.Count;
 double good_sensors = GlobalList.R().Count;
 double warning_sensors = 0;
 double missing_sensors = 0;
@@ -59,9 +64,9 @@ warningAdv=SensorModelHelper.DisplayAdvWithWrongOffset(AvregeAdv * StandardOffse
 //Console.WriteLine(MedianRssi + " * " + StandardOffset + " = " + MedianRssi * StandardOffset);
 missing_sensors = SensorModelHelper.DisplaySensorListMissing(listSensor.SensorList);
 if(warningAdv>warning_sensors)
-good_sensors = good_sensors - warningAdv - missing_sensors;
+good_sensors = good_sensors - warningAdv;
 else
-good_sensors = (good_sensors - warning_sensors) - missing_sensors;
+good_sensors = (good_sensors - warning_sensors);
 if (all_sensors != 0)
 {
     good_sensors /= all_sensors;
@@ -85,6 +90,7 @@ Console.WriteLine($"Percent of warning adv. sensors {warningAdv.ToString("0.##")
 Console.ForegroundColor = ConsoleColor.White;
 //Console.WriteLine("Avrage:");
 //SensorModelHelper.DisplayRssiWithWrongOffset(AvregeRssi* StandardOffset, listSensor.SensorList);
+TimeSpan timeSpan;
 while (true)
 {
     Console.WriteLine("--------------------------------------------------------------------");
@@ -95,10 +101,12 @@ while (true)
     string check = Console.ReadLine();
     if (check.Equals("e", StringComparison.OrdinalIgnoreCase))
     {
+        timeSpan = stopwatch.Elapsed;
         break;
     }
     if (check.Equals("r", StringComparison.OrdinalIgnoreCase))
     {
+        stopwatch.Reset();
         GlobalList.OneRSSI(unchecked((int)AvregeRssi));
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Rescan");
@@ -107,7 +115,9 @@ while (true)
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"Sudo command inicialize for {i} time!");
             string command = $"sudo blescan -i {blescan.hci}";
+            stopwatch.Start();
             Console.WriteLine(command);
+            stopwatch.Stop();
             var com = LinuxCommand.SystemCommand(command);
             var listBluetooth = new ScannsedSensorManager(new BlePhrase());
             Console.WriteLine("Making list inicialize");
@@ -121,8 +131,8 @@ while (true)
 
         Console.WriteLine($"Finish with GlobalList Count: {GlobalList.R().Count}");
         Console.ForegroundColor = ConsoleColor.White;
-        all_sensors = GlobalList.R().Count;
-        good_sensors = all_sensors;
+        //all_sensors = GlobalList.R().Count;
+        good_sensors = GlobalList.R().Count;
         MedianRssi = CheckingRssi.ChceckMedianRssi();
         AvregeRssi = CheckingRssi.CheckingAvregeRssi();
         AvregeAdv = GlobalList.ChceckAvregeAdvOnDefineIndex(index);
@@ -131,9 +141,9 @@ while (true)
         //Console.WriteLine(MedianRssi + " * " + StandardOffset + " = " + MedianRssi * StandardOffset);
         missing_sensors = SensorModelHelper.DisplaySensorListMissing(listSensor.SensorList);
         if (warningAdv > warning_sensors)
-            good_sensors = (good_sensors - warningAdv) - missing_sensors;
+            good_sensors = (good_sensors - warningAdv) ;
         else
-            good_sensors = (good_sensors - warning_sensors) - missing_sensors;
+            good_sensors = (good_sensors - warning_sensors);
         if (all_sensors != 0)
         {
             good_sensors /= all_sensors;
@@ -162,7 +172,10 @@ while (true)
     }
 
 }
-ListOfSpecificModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R(), listSensor.SensorList, AvregeRssi * StandardOffset,AvregeAdv*StandardOffsetUp,AvregeAdv*StandardOffsetDown,index);
+//Uncoment line below to see avrege rssi
+//Console.WriteLine("Avrege Rssi: "+AvregeRssi);
+double seconds_of_work_and_pakages = blescan.PackagesPerS*(timeSpan.TotalSeconds+timeSpan.TotalMinutes*60);
+ListOfSpecificModelToCsv.ListOfBleDeviceModelToCsvFile(GlobalList.R(), listSensor.SensorList, AvregeRssi * StandardOffset,AvregeAdv*StandardOffsetUp,AvregeAdv*StandardOffsetDown,index, seconds_of_work_and_pakages);
 
 
 //Brak dalszych modyfikacji.
