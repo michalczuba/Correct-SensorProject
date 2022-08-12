@@ -6,7 +6,10 @@ namespace SensorAppTests
     public class TestForBlePhrase
     {
         [Theory]
-        [InlineData("Alfa beta (new): 7c:fd:6b:e4:54:5a -99000 dBm Manufacturer: <9034928395>", "7c:fd:6b:e4:54:5a -99000 ", "9034928395")]
+        [InlineData(@"Device (new): [37m60:77:71:61:02:48[0m (public), -74 dBm 
+        Flags: < 06 >
+        Manufacturer: <020df0e072a000aa000000b2000000> Complete Local Name: '[36mHIVE v2202[0m'
+        0x12: < 1e005000 > ", "60:77:71:61:02:48 -74 ", "020df0e072a000aa000000b2000000")]
         public void BlePhrase_SchouldWork(string input, string expected, string AdvForTest)
         {
             //Arnage
@@ -47,10 +50,10 @@ namespace SensorAppTests
             Assert.Equal(expected, actual);
         }
         /*[Theory]
-        [InlineData(@" Device (new): 60:77:71:60:ce:46 (public), -76 dBm
+        [InlineData(@" Device (new): [37m60:77:71:60:ce:46 (public), -76 dBm
         Flags: < 06 >
         Manufacturer: <020df7e000c000aa770000af000005>.
-    Device (new): 80:6f:b0: ab:40:37(public), -90 dBm
+    Device (new): [37m80:6f:b0: ab:40:37(public), -90 dBm
         Flags: <06>
         Manufacturer: <020dffe072a000ac000000a2000000>.
     Device (new): 60:77:71:60:37:53 (public), -92 dBm
@@ -82,18 +85,18 @@ namespace SensorAppTests
 
         }*/
         [Theory]
-        [InlineData(@" Device (new): 60:77:71:60:ce:46 (public), -76 dBm
+        [InlineData(@" Device (new): [37m60:77:71:60:ce:46[0m (public), -76 dBm
         Flags: < 06 >
-        Manufacturer: <020df7e000c000aa770000af000005> Device (new): 80:6f:b0: ab:40:37 (public), -90 dBm
+        Manufacturer: <020df7e000c000aa770000af000005> Device (new): [37m60:77:71:61:02:41[0m (public), -90 dBm
         Flags: <06>
-        Manufacturer: <020dffe072a000ac000000a2000000> Device (new): 60:77:71:60:37:53 (public), -92 dBm
+        Manufacturer: <020dffe072a000ac000000a2000000> Device (new):[37m60:77:71:61:02:42[0m (public), -92 dBm
         Flags: <06>
-        Manufacturer: <020dffe072a000ab000000af000000> Device (new): 60:77:71:5f:d7:c7 (public), -95 dBm
-        Flags: <06> Manufacturer: <020df0e072a000ab00000099000000> Device (new): 60:77:71:60:49:48 (public), -92 dBm
+        Manufacturer: <020dffe072a000ab000000af000000> Device (new): [37m60:77:71:61:02:43[0m (public), -95 dBm
+        Flags: <06> Manufacturer: <020df0e072a000ab00000099000000> Device (new): [37m60:77:71:61:02:44[0m (public), -92 dBm
         Flags: <06>
-        Manufacturer: <020dffe072a000ab010000a2000000> Device (new): 60:77:71:60:48:73 (public), -90 dBm
+        Manufacturer: <020dffe072a000ab010000a2000000> Device (new): [37m60:77:71:61:02:45[0m (public), -90 dBm
         Flags: <06>
-        Manufacturer: <020dffe072a000ac010000ac000000> Device (new): 60:77:71:da:fe:32 (public), -89 dBm
+        Manufacturer: <020dffe072a000ac010000ac000000> Device (new): [37m60:77:71:61:02:46[0m (public), -89 dBm
         Flags: <06>
         Manufacturer: <020dffe072a000ac000000b8000000>", 7)]
         public void SchouldReturnCorrectNumberOfSensors(string input, int expected)
@@ -108,18 +111,18 @@ namespace SensorAppTests
             Assert.Equal(expected, actual);
         }
         [Theory]
-        [InlineData(@" Device (new): 60:77:71:60:ce:46 (public), -76 dBm
+        [InlineData(@" Device (new): [37m60:77:71:61:02:48[0m (public), -76 dBm
         Flags: < 06 >
-        Manufacturer: <020df7e000c000aa770000af000005> Device (update): 60:77:71:60:ce:46 (public), -90 dBm
+        Manufacturer: <020df7e000c000aa770000af000005> Device (update): [37m60:77:71:61:02:48[0m (public), -90 dBm
         Flags: <06>
-        Manufacturer: <020dffe072a000ac000000a2000000> Device (update): 60:77:71:60:ce:46 (public), -92 dBm
+        Manufacturer: <020dffe072a000ac000000a2000000> Device (update): [37m60:77:71:61:02:48[0m (public), -92 dBm
         Flags: <06>
-        Manufacturer: <020dffe072a000ab000000af000000> Device (update): 60:77:71:60:ce:46 (public), -95 dBm
-        Flags: <06> Manufacturer: <020df0e072a000ab00000099000000>. Device (new):60:77:71:60:ce:46 (public), -92 dBm
+        Manufacturer: <020dffe072a000ab000000af000000> Device (update): [37m60:77:71:61:02:48[0m (public), -95 dBm
+        Flags: <06> Manufacturer: <020df0e072a000ab00000099000000> Device (update): [37m60:77:71:61:02:48[0m (public), -92 dBm
         Flags: <06>
-        Manufacturer: <020dffe072a000ab010000a2000000> Device (update): 60:77:71:60:ce:46 (public), -90 dBm
+        Manufacturer: <020dffe072a000ab010000a2000000> Device (update): [37m60:77:71:61:02:48[0m (public), -90 dBm
         Flags: <06>
-        Manufacturer: <020dffe072a000ac010000ac000000> Device (update): 60:77:71:60:ce:46 (public), -89 dBm
+        Manufacturer: <020dffe072a000ac010000ac000000> Device (update): [37m60:77:71:61:02:48[0m (public), -89 dBm
         Flags: <06>
         Manufacturer: <020dffe072a000ac000000b8000000>", 7)]
         public void SchouldReturnCorrectRssiCount(string input, int expected)

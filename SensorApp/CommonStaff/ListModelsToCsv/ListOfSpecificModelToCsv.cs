@@ -5,17 +5,17 @@ namespace Common.ListModelsToModelCsv
 {
     public class ListOfSpecificModelToCsv
     {
-        public class PartialBleDiviceModel
+        private class PartialBleDiviceModel
         {
-            public string SerialNumber { get; set; }
-            public string Mac { get; set; }
+            public string? SerialNumber { get; set; }
+            public string? Mac { get; set; }
             public int? Rssi { get; set; }
 
-            public string WarningOrMissing { get; set; }
-            public string WarningAdv { get; set; }
-            public string Pagaes_per { get; set; }
+            public string? WarningOrMissing { get; set; }
+            public string? WarningAdv { get; set; }
+            public string? Pagaes_per { get; set; }
         }
-        public class PackagesStatistic
+        private class PackagesStatistic
         {
             public double SumOfPackagesPercent { get; set; }
             public int NumberOfDevicesScanned { get; set; }
@@ -34,7 +34,7 @@ namespace Common.ListModelsToModelCsv
                 csv.WriteRecords(ListPB);
             }
         }
-        public static PartialBleDiviceModel CreataPartialDevice(SensorModel val, List<BleDeviceModel> TemporaryListOfBleDeviceModel, int index, double Rw, double AdvUp, double AdvDown, int IndexAdv, double packages)
+        private static PartialBleDiviceModel CreataPartialDevice(SensorModel val, List<BleDeviceModel> TemporaryListOfBleDeviceModel, int index, double Rw, double AdvUp, double AdvDown, int IndexAdv, double packages)
         {
             PartialBleDiviceModel partialBleDeviceModel = new PartialBleDiviceModel();
             if (index == -1)
@@ -73,7 +73,7 @@ namespace Common.ListModelsToModelCsv
             }
             return partialBleDeviceModel;
         }
-        public static List<PartialBleDiviceModel> CreateAListToSave(List<SensorModel> CsvFile, List<BleDeviceModel> TemporaryListOfBleDeviceModel, double Rw, double AdvUp, double AdvDown, int IndexAdv, double packages)
+        private static List<PartialBleDiviceModel> CreateAListToSave(List<SensorModel> CsvFile, List<BleDeviceModel> TemporaryListOfBleDeviceModel, double Rw, double AdvUp, double AdvDown, int IndexAdv, double packages)
         {
             List<PartialBleDiviceModel> ListOfPartialDeviceModel = new List<PartialBleDiviceModel>();
             PackagesStatistic AvregePackagesPercent = new PackagesStatistic();
@@ -91,7 +91,7 @@ namespace Common.ListModelsToModelCsv
             WriteAvregePackagesPercent((AvregePackagesPercent.SumOfPackagesPercent / AvregePackagesPercent.NumberOfDevicesScanned)*100);
             return ListOfPartialDeviceModel;
         }
-        public static void WriteAvregePackagesPercent(double avrege)
+        private static void WriteAvregePackagesPercent(double avrege)
         {
             Console.WriteLine("Avrega PP: " + avrege.ToString("0.##") + "%");
         }

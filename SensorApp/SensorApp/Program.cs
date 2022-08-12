@@ -54,8 +54,8 @@ int index = blescan.Index;
 
 
 
-int MedianRssi = CheckingRssi.ChceckMedianRssi();
-long AvregeRssi = CheckingRssi.CheckingAvregeRssi();
+int MedianRssi = CheckingRssi.ChceckMedianRssi(GlobalList.R());
+double AvregeRssi = CheckingRssi.CheckingAvregeRssi(GlobalList.R());
 long AvregeAdv = GlobalList.ChceckAvregeAdvOnDefineIndex(index);
 double StandardOffset = 1 + double.Parse(blescan.StandardOffsetRSSI.Substring(0, blescan.StandardOffsetRSSI.Length - 1)) / 100;
 double StandardOffsetUp = 1 + double.Parse(blescan.StandardOffsetADV.Substring(0, blescan.StandardOffsetADV.Length - 1)) / 100;
@@ -135,8 +135,8 @@ while (true)
         Console.ForegroundColor = ConsoleColor.White;
         //all_sensors = GlobalList.R().Count;
         good_sensors = GlobalList.R().Count;
-        MedianRssi = CheckingRssi.ChceckMedianRssi();
-        AvregeRssi = CheckingRssi.CheckingAvregeRssi();
+        MedianRssi = CheckingRssi.ChceckMedianRssi(GlobalList.R());
+        AvregeRssi = CheckingRssi.CheckingAvregeRssi(GlobalList.R());
         AvregeAdv = GlobalList.ChceckAvregeAdvOnDefineIndex(index);
         SensorModelHelper.DisplayAdvWithWrongOffset(AvregeAdv * StandardOffsetUp, AvregeAdv * StandardOffsetDown, index, listSensor.SensorList);
         warning_sensors = SensorModelHelper.DisplayRssiWithWrongOffset(AvregeRssi * StandardOffset, listSensor.SensorList);

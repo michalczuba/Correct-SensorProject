@@ -1,30 +1,27 @@
-﻿namespace SensorApp.Services
+﻿using Common.Modeles;
+
+namespace SensorApp.Services
 {
     public class CheckingRssi
     {
-        public static int ChceckMedianRssi()
+        public static int ChceckMedianRssi(IEnumerable<BleDeviceModel> list)
         {
             List<int> rssi = new List<int>();
-            foreach (var val in GlobalList.R())
+            foreach (var val in list)
             {
                 rssi.Add(val.Mediana);
             }
             rssi.Sort();
             return rssi[rssi.Count / 2];
         }
-        public static long CheckingAvregeRssi()
+        public static double CheckingAvregeRssi(IEnumerable<BleDeviceModel> list)
         {
             List<int> rssi = new List<int>();
-            long Big = 0;
-            foreach(var value in GlobalList.R())
+            foreach(var value in list)
             {
-                foreach(var val in value.DBm)
-                {
-                    Big += val;
-                    rssi.Add(val);
-                }
+                rssi.AddRange(value.DBm);
             }
-            return Big/rssi.Count();
+            return rssi.Average();
         }
     }
 }
