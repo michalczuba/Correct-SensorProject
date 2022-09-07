@@ -5,10 +5,13 @@ namespace Common
     {
         private static string MakeInfluxCommand(string command)
         {
-            string Ixcommand = "influx -execute '";
-            Ixcommand += command;
-            Ixcommand += "'";
+            string Ixcommand =$"influx -execute '{command}'";
             return Ixcommand;
+        }
+        private static string MakeInfluxCommandDelete(string command,string database)
+        {
+            string InfluxCommand = $"influx -execute "+'"'+command+'"'+" -database="+'"'+database+'"';
+            return InfluxCommand;
         }
         public static string SystemCommand(string command)//this will start linux command and return what system will write
         {
@@ -97,10 +100,12 @@ namespace Common
 
             return proc.StandardOutput.ReadToEnd();
         }
-        public static void InfluxCommandVoid(string command)//this will start linux command and return what system will write
+        //influx -execute "DELETE FROM \"60:77:71:5D:DF:27\" WHERE Info='BAZA_SENSORÓW.csv;;;'" -database="TryInflux"
+        public static string InfluxCommandVoid(string command,string databse)//this will start linux command and return what system will write
         {
-            command = MakeInfluxCommand(command);
-            command = command.Replace("\"", "\"\"");
+            //command = MakeInfluxCommandDelete(command,databse);
+            //command = command.Replace("\"", "\"\"");
+            //Console.WriteLine(command);
             var proc = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -125,7 +130,7 @@ namespace Common
             //proc.BeginOutputReadLine();
             proc.WaitForExit(3000);
 
-            
+            return proc.StandardOutput.ReadToEnd();
         }
         
     }
